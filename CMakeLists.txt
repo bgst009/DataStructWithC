@@ -3,4 +3,5 @@ project(DataStructWithC C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(DataStructWithC main.c)
+add_executable(DataStructWithC main.c LinearTable/SqList.c LinearTable/SqList.h header.h)
+add_executable(LinearTable LinearTable/SqList.c LinearTable/SqList.h)
