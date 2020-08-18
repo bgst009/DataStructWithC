@@ -10,7 +10,7 @@
 
 #define ListInitSize  100
 #define ListIncrement  10
-#define MAXSIZE 20
+#define MAXSIZE 1000
 typedef int ElemType;
 
 // 线性表的顺序表示 静态
@@ -31,11 +31,35 @@ typedef struct LNode {
     ElemType data;
     struct LNode *next;
 } LNode, *LinkList;
+
+//线性表的静态单链表存储
+typedef struct {
+    ElemType data;
+    int cur;
+} component, SLinkList[MAXSIZE];
+
 //InitList
 bool InitList_Sq(SqListDynamic *L);
 
+bool InitList_SL(SLinkList *space);
+
+//若备用链表非空，则返回分配的节点的小标，否则返回 0
+int Malloc_SL(SLinkList space);
+
+//将小标为K的 空闲节点回收
+void Free_SL(SLinkList space, int k);
+
+//在 L 中第 i 个元素前插入新的数据元素e
+bool ListInsert_SL(SLinkList Space, int i, ElemType e);
+//在 L 中删除 第 i 个数据元素e
+bool ListDel_SL(SLinkList Space, int i);
+
 //随机产生 n 个元素的值，建立带表头节点的单链线性表L（头插法）
 void createListHead(LinkList *L, int n);
+
+//初始条件：静态链表已经存在
+//操作结果：返回 L 中数据元素的个数
+int ListLength_SL(SLinkList space);
 
 //随机产生 n 个元素的值，建立带表头节点的单链线性表L（尾插法）
 void createListTail(LinkList *L, int n);
@@ -73,8 +97,15 @@ bool ListDelete_L(LinkList L, int i, ElemType *e);
 //ListTraverse
 bool ListTraverse_Sq(SqListDynamic L);
 
+bool ListTraverse_L(LinkList *L);
+
+bool ListTraverse_SL(SLinkList);
+
 //test
 void test_SqList();
 
+void test_LinkList();
+
+void test_SLinkList();
 
 #endif //DATASTRUCTWITHC_SQLIST_H

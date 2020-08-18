@@ -3,13 +3,17 @@
 //
 
 
+#include <assert.h>
 #include "SqList.h"
 
 int main() {
     printf("H e l l o , W o r l d ! \n");
 
-    test_SqList();
+//    test_SqList();
 
+//    test_LinkList();
+
+    test_SLinkList();
     return 0;
 }
 
@@ -47,6 +51,40 @@ void test_SqList() {
     ListTraverse_Sq(Sq);
 }
 
+void test_LinkList() {
+    LinkList L;
+    createListHead(&L, 20);
+    ListTraverse_L(&L);
+
+//    ElemType elemType = 5;
+//    ListInsert_L(L, 5, elemType);
+//    ListTraverse_L(&L);
+//    ListDelete_L(L, 5, &elemType);
+//    printf("\n %d \n", elemType);
+
+    LinkList L1;
+    createListTail(&L1, 19);
+    ListTraverse_L(&L1);
+
+//    ElemType elemType1 = 5;
+//    ListInsert_L(L1, 5, elemType1);
+//    ListTraverse_L(&L1);
+//    ListDelete_L(L1, 5, &elemType1);
+//    printf("\n %d \n", elemType1);
+}
+
+void test_SLinkList() {
+    SLinkList SL;
+    InitList_SL(SL);
+
+    srand(time(0));
+    for (int i = 0; i < 100; ++i) {
+        ListInsert_SL(SL, i + 1, rand() % 100 + 1);
+    }
+
+    ListTraverse_SL(SL);
+}
+
 bool InitList_Sq(SqListDynamic *L) {
     L->data = (ElemType *) malloc(ListInitSize * sizeof(ElemType));
     if (L->data) {
@@ -55,6 +93,91 @@ bool InitList_Sq(SqListDynamic *L) {
         return true;
     } else
         return false;
+}
+
+bool InitList_SL(SLinkList *space) {
+    int i = 0;
+    for (i = 0; i < MAXSIZE - 1; ++i) {
+        (*space[i]).cur = i + 1;
+    }
+    (*space[MAXSIZE - 1]).data = 0;
+    return true;
+}
+
+int Malloc_SL(SLinkList space) {
+    //备用元素的第一个下标
+    int i = space[0].cur;
+
+    if (space[0].cur) {
+        //要往出哪一个，就要把它的下一个拿来备用
+        space[0].cur = space[i].cur;
+    }
+
+    return i;
+}
+
+bool ListInsert_SL(SLinkList Space, int i, ElemType e) {
+    //最后一个元素的下标
+    int k = MAXSIZE - 1;
+
+    //边界合法性判断
+    if (i < 1 || i > ListLength_SL(Space) + 1) {
+        return false;
+    }
+
+    //获得空闲分量的下标
+    int j = Malloc_SL(Space);
+
+    if (j) {
+        Space[j].data = e;
+        int l;
+        //找到 i 个元素之前的位置
+        for (l = 1; l < i; ++l) {
+            k = Space[k].cur;
+        }
+
+        Space[j].cur = Space[k].cur;
+        Space[k].cur = j;
+
+        return true;
+    }
+    return false;
+}
+
+bool ListDel_SL(SLinkList Space, int i) {
+    //边界合法性判断
+    if (i < 1 || i > ListLength_SL(Space) + 1) {
+        return false;
+    }
+    //最后一个元素的下标
+    int k = MAXSIZE - 1;
+
+    //要删除元素的下标
+    int j = 0;
+
+    //找到 i 个元素之前的位置
+    for (j = 1; j <= i - 1; ++j) {
+        k = Space[k].cur;
+    }
+    j = Space[k].cur;
+    Space[k].cur = Space[j].cur;
+    Free_SL(Space, j);
+    return true;
+}
+
+int ListLength_SL(SLinkList space) {
+    int j = 0;
+    int i = space[MAXSIZE - 1].cur;
+    while (i) {
+        i = space[i].cur;
+        j++;
+    }
+    return j;
+}
+
+void Free_SL(SLinkList space, int k) {
+    space[k].cur = space[0].cur;
+    space[0].cur = k;
 }
 
 void createListHead(LinkList *L, int n) {
@@ -69,7 +192,7 @@ void createListHead(LinkList *L, int n) {
         p = (LNode *) malloc(sizeof(LNode));
         p->data = rand() % 100 + 1;//0-100;
         p->next = (*L)->next;
-        (*p).next = p;
+        (*L)->next = p;
     }
 }
 
@@ -78,7 +201,7 @@ void createListTail(LinkList *L, int n) {
     LNode *r;
     LNode *p;
     int i;
-    //带头结点的单链表 L (L 就是头节点)
+    //带头结点的单链表 L (L 就是头指针)
     *L = (LinkList) malloc(sizeof(LNode));
     (*L)->next = NULL;
     r = *L;
@@ -323,4 +446,36 @@ bool ListTraverse_Sq(SqListDynamic L) {
     printf("\n");
 
     return true;
+}
+
+bool ListTraverse_L(LinkList *L) {
+    printf("\n ListTraverse_L \n");
+
+    LNode *p;
+    p = (*L)->next;
+    //计数器
+    int j = 0;
+
+    while (p) {
+        printf(" %d ", p->data);
+        p = p->next;
+        ++j;
+        if (j % 20 == 0) {
+            printf("\n");
+        }
+    }
+}
+
+bool ListTraverse_SL(SLinkList L) {
+    if (L[MAXSIZE - 1].cur == 0)
+        return false;
+
+    int i = L[MAXSIZE - 1].cur;
+    int j = 0;
+    while (i) {
+        i = L[i].cur;
+        printf(" %d ", L[i].data);
+        ++j;
+    }
+
 }
