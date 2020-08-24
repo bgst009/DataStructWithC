@@ -31,20 +31,31 @@ bool ClearStack_Sq(SqStack *sqStack) {
     }
 }
 
+//操作结果：栈空返回 true
 bool StackEmpty_Sq(SqStack *sqStack) {
     if (sqStack) {
-        sqStack->top = -1;
-        return true;
+        if (sqStack->top <= -1) {
+            return true;
+        } else
+            return false;
     } else {
         printf("\n The Stack is Not exist \n");
         return false;
     }
 }
 
+//执行结果：通过 elem 返回栈顶元素
 bool GetTop_Sq(SqStack *sqStack, SElemType *elem) {
+    //栈存在
     if (sqStack) {
-        *elem = sqStack->data[sqStack->top];
-        return true;
+        //栈空
+        if (sqStack->top <= -1) {
+            printf("\n Stack is empty!!! \n");
+            return false;
+        } else {
+            *elem = sqStack->data[sqStack->top];
+            return true;
+        }
     } else {
         printf("\n The Stack is Not exist \n");
         return false;
@@ -53,6 +64,7 @@ bool GetTop_Sq(SqStack *sqStack, SElemType *elem) {
 
 bool Push_Sq(SqStack *sqStack, SElemType elem) {
     if (sqStack) {
+        //栈满
         if (sqStack->top >= MAXSIZE - 1) {
             printf("\n Stack is Full!!! \n");
             return false;
