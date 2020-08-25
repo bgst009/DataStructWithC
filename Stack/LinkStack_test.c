@@ -4,7 +4,7 @@
 
 #include "LinkStack_test.h"
 
-int main() {
+int main2() {
     printf("\n Link Stack \n");
 
     test_LinkStack();
@@ -38,6 +38,22 @@ void test_LinkStack() {
     print_LS(&linkStack);
     DestroyStack_LS(&linkStack);
     print_LS(&linkStack);
+
+}
+
+void conversion() {
+    LinkStack LS;
+    InitStack_LS(&LS);
+
+    int N;
+    scanf("%d", &N);
+    while (N) {
+        Push_LS(&LS, N % 8);
+        N /= 8;
+    }
+    while (!StackEmpty_LS(&LS)) {
+        print_LS(&LS);
+    }
 
 }
 

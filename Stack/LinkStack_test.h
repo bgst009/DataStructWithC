@@ -9,4 +9,6 @@
 
 void test_LinkStack();
 
+void conversion();
+
 #endif //DATASTRUCTWITHC_LINKSTACK_TEST_H
