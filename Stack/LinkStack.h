@@ -15,17 +15,19 @@ typedef struct StackNode {
 } StackNode, *LinkStackPtr;
 
 typedef struct LinkStack {
+
+    //top为头节点
     LinkStackPtr top;
-    int count;
+    int stack_size;
 } LinkStack;
 
-bool InitStack_LS(LinkStack *);
+bool InitStack_LS(LinkStack *linkStack);
 
-bool DestroyStack_LS(LinkStack *);
+bool DestroyStack_LS(LinkStack *linkStack);
 
-bool ClearStack_LS(LinkStack *);
+bool ClearStack_LS(LinkStack *linkStack);
 
-bool StackEmpty_LS(LinkStack linkStack);
+bool StackEmpty_LS(LinkStack *linkStack);
 
 bool Push_LS(LinkStack *linkStack, SElemType elem);
 
@@ -33,6 +35,8 @@ bool Pop_LS(LinkStack *linkStack, SElemType *elem);
 
 bool Top_LS(LinkStack *linkStack, SElemType *elem);
 
-int StackLength_LS(LinkStack linkStack);
+int StackLength_LS(LinkStack *linkStack);
+
+bool print_LS(LinkStack* linkStack);
 
 #endif //DATASTRUCTWITHC_LINKSTACK_H
