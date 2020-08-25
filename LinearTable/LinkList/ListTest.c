@@ -4,8 +4,8 @@
 
 #include "ListTest.h"
 #include "LinkList.h"
-#include "SLinkList.h"
-#include "SqList.h"
+#include "../SLinkList/SLinkList.h"
+#include "../SqList/SqList.h"
 
 
 int main() {

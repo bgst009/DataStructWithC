@@ -6,7 +6,7 @@
 #define DATASTRUCTWITHC_SQLIST_H
 
 
-#include "../header.h"
+#include "../../header.h"
 
 #define ListInitSize  100
 #define ListIncrement  10

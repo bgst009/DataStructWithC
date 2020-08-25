@@ -7,7 +7,7 @@
 
 #define MAXSIZE 15
 
-#include "../header.h"
+#include "../../header.h"
 
 typedef int SElemType;
 typedef struct {

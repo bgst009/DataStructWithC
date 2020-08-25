@@ -1,5 +1,5 @@
 //
-// Created by 14991 on 2020/8/22.
+// Created by bgst on 2020/8/22.
 //
 
 #ifndef DATASTRUCTWITHC_LINKLIST_H
@@ -8,7 +8,7 @@
 #define ListIncrement  10
 typedef int ElemType;
 
-#include "../header.h"
+#include "../../header.h"
 
 /* ===================================     Link List    ============================== */
 //线性表的单链表存储结构

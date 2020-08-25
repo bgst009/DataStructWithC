@@ -5,7 +5,7 @@
 #ifndef DATASTRUCTWITHC_SLINKLIST_H
 #define DATASTRUCTWITHC_SLINKLIST_H
 
-#include "../header.h"
+#include "../../header.h"
 
 #define ListInitSize  100
 #define ListIncrement  10
