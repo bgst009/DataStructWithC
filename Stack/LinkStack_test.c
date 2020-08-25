@@ -4,13 +4,6 @@
 
 #include "LinkStack_test.h"
 
-int main2() {
-    printf("\n Link Stack \n");
-
-    test_LinkStack();
-
-    return 1;
-}
 
 void test_LinkStack() {
     LinkStack linkStack;

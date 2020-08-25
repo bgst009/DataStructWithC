@@ -4,11 +4,6 @@
 
 #include "Stack_test.h"
 
-int main1() {
-    printf("Hello World\n");
-    test_Sq_Stack();
-    return 0;
-}
 
 void test_Sq_Stack() {
 

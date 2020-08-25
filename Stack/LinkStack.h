@@ -37,6 +37,6 @@ bool Top_LS(LinkStack *linkStack, SElemType *elem);
 
 int StackLength_LS(LinkStack *linkStack);
 
-bool print_LS(LinkStack* linkStack);
+bool print_LS(LinkStack *linkStack);
 
 #endif //DATASTRUCTWITHC_LINKSTACK_H
