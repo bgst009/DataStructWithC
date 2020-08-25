@@ -3,14 +3,17 @@
 //
 
 #include "./LinkQueue/LinkQueue.h"
+#include "./SqQueue/SqQueue.h"
 
 void testLQ();
+
+void testSQ();
 
 int main() {
 
 
-    testLQ();
-
+//    testLQ();
+    testSQ();
     return 0;
 }
 
@@ -46,5 +49,32 @@ void testLQ() {
 
 }
 
+void testSQ() {
+    SqQueue sqQueue;
+    InitQueue_SQ(&sqQueue);
+
+    srand(time(NULL));
+    QElemType elem;
+
+    for (int i = 0; i < 105; ++i) {
+        elem = rand() % 100 + 1;
+        EnQueue_SQ(&sqQueue, elem);
+    }
+    printf("\n Queue's length %d \n", QueueLength_SQ(&sqQueue));
+    print_SQ(&sqQueue);
+    printf("\n Queue's length %d \n", QueueLength_SQ(&sqQueue));
+
+    for (int i = 0; i < 105; ++i) {
+        elem = rand() % 100 + 1;
+        EnQueue_SQ(&sqQueue, elem);
+    }
+
+    ClearQueue_SQ(&sqQueue);
+    print_SQ(&sqQueue);
+
+    DestroyQueue_SQ(&sqQueue);
+    print_SQ(&sqQueue);
+
+}
 
 

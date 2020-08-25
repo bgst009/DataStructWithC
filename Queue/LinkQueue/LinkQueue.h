@@ -5,13 +5,7 @@
 #ifndef DATASTRUCTWITHC_LINKQUEUE_H
 #define DATASTRUCTWITHC_LINKQUEUE_H
 
-#include <stdio.h>
-#include <stdbool.h>
-#include <stdlib.h>
-#include <time.h>
-
-
-typedef int QElemType;
+#include "../header.h"
 
 typedef struct QNode {
     QElemType data;
