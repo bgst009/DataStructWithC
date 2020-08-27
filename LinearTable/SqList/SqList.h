@@ -28,7 +28,11 @@ typedef struct {
     int listSize;
 } SqListDynamic;
 
-//InitList
+/**
+ * 初始化线性表
+ * @param L 线性表
+ * @return
+ */
 bool InitList_Sq(SqListDynamic *L);
 //DestroyList
 bool DestroyList_Sq(SqListDynamic *L);
