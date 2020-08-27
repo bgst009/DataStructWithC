@@ -6,21 +6,29 @@
 
 #include "./LinkQueue/LinkQueue.h"
 
-bool InitBiTree(BiTree biTree) {
-
-//    if (!(biTree = (BiTree) malloc(sizeof(BiTNode)))) {
-//        printf("\n No space \n");
-//    }
-
-    biTree->data = '#';
-    biTree->rchild = NULL;
-    biTree->lchild = NULL;
-
+bool InitBiTree(BiTree *biTree) {
+    if (!((*biTree) = (BiTree) malloc(sizeof(BiTNode))))
+        return false;
+    (*biTree)->data = '#';
+    (*biTree)->lchild = (*biTree)->rchild = NULL;
     return true;
 }
 
-bool DestroyBiTree(BiTree biTree) {
+bool DestroyBiTree(BiTree *biTree) {
+    if (*biTree) {
+        if ((*biTree)->lchild)
+            DestroyBiTree(&((*biTree)->lchild));
+        if ((*biTree)->rchild)
+            DestroyBiTree(&((*biTree)->rchild));
 
+        free(*biTree);
+        *biTree = NULL;
+//        printf("\n销毁成功!\n");
+
+        return true;
+    }
+
+    return false;
 }
 
 bool CreateBiTree(BiTree *biTree) {
@@ -30,7 +38,7 @@ bool CreateBiTree(BiTree *biTree) {
     scanf("%c", &ch);
 
     if (ch == '#') {
-        biTree = NULL;
+        *biTree = NULL;
     } else {
         (*biTree) = (BiTNode *) malloc(sizeof(BiTNode));
         //动态分配内存失败
@@ -40,10 +48,14 @@ bool CreateBiTree(BiTree *biTree) {
         }
         //生成根节点
         (*biTree)->data = ch;
+        (*biTree)->rchild = NULL;
+        (*biTree)->rchild = NULL;
         //构造左子树
-        CreateBiTree(&(*biTree)->lchild);
+//        printf("\n建立左子树\n");
+        CreateBiTree(&((*biTree)->lchild));
         //构造右子树
-        CreateBiTree(&(*biTree)->rchild);
+//        printf("\n建立右子树\n");
+        CreateBiTree(&((*biTree)->rchild));
     }
 
 
@@ -71,10 +83,18 @@ BiTNode *FindNode(BiTree biTree, BiTNode *elemNode) {
 
     if (biTree->data == elemNode->data || biTree == elemNode) {
         return biTree;
-    } else {
-        FindNode(biTree->lchild, elemNode);
-        FindNode(biTree->rchild, elemNode);
     }
+
+    BiTNode *return_Node;
+
+    return_Node = FindNode(biTree->lchild, elemNode);
+    if (return_Node)
+        return return_Node;
+    return_Node = FindNode(biTree->rchild, elemNode);
+    if (return_Node)
+        return return_Node;
+
+    return NULL;
 }
 
 TElemType Value(BiTree biTree, BiTNode *elemNode) {
@@ -95,47 +115,65 @@ bool Assign(BiTree biTree, BiTNode *elemNode, TElemType value) {
 
 BiTNode *Parent(BiTree biTree, BiTNode *elemNode) {
     if (BiTreeEmpty(biTree) || (biTree->lchild == NULL && biTree->rchild == NULL)) {
-        printf("\n Tree is Empty \n");
+        printf("\n Tree is Empty or Only Have root \n");
         return NULL;
     }
 
+    //可以找到父亲节点
     if (biTree->rchild == elemNode || biTree->lchild == elemNode
         || biTree->rchild->data == elemNode->data || biTree->lchild->data == elemNode->data) {
         return biTree;
-    } else {
-        Parent(biTree->lchild, elemNode);
-        Parent(biTree->rchild, elemNode);
     }
+    BiTNode *return_Node;
+
+    return_Node = Parent(biTree->lchild, elemNode);
+    if (return_Node)
+        return return_Node;
+    return_Node = Parent(biTree->rchild, elemNode);
+    if (return_Node)
+        return return_Node;
+
+    return NULL;
 }
 
 BiTNode *LeftChild(BiTree biTree, BiTNode *elemNode) {
     return FindNode(biTree, elemNode)->lchild;
 }
 
-BiTNode *RightNode(BiTree biTree, BiTNode *elemNode) {
+BiTNode *RightChild(BiTree biTree, BiTNode *elemNode) {
     return FindNode(biTree, elemNode)->rchild;
 }
 
 BiTNode *LeftSibling(BiTree biTree, BiTNode *elemNode) {
-    BiTNode *left;
-    left = Parent(biTree, elemNode);
+    BiTNode *node = FindNode(biTree, elemNode);
+    BiTNode *parent = Parent(biTree, node);
 
-    if (left == elemNode || left->data == elemNode->data) {
-        return NULL;
-    } else {
-        return left;
+    //没有找到，或者该节点为父亲节点的左孩子
+    if (!parent || parent->lchild == node) {
+        parent = (BiTree) malloc(sizeof(BiTree));
+        parent->data = '#';
+        parent->rchild = parent->lchild = NULL;
+        return parent;
     }
+
+    return parent->lchild;
+
+
 }
 
 BiTNode *RightSibling(BiTree biTree, BiTNode *elemNode) {
-    BiTNode *right;
-    right = Parent(biTree, elemNode);
+    BiTNode *node = FindNode(biTree, elemNode);
+    BiTNode *parent = Parent(biTree, elemNode);
 
-    if (right == elemNode || right->data == elemNode->data) {
-        return NULL;
-    } else {
-        return right;
+    //没有找到，或者该节点为父亲节点的右孩子
+    if (!parent || parent->rchild == node) {
+        parent = (BiTree) malloc(sizeof(BiTree));
+        parent->data = '#';
+        parent->rchild = parent->lchild = NULL;
+        return parent;
     }
+
+    return parent->rchild;
 }
 
 bool InsertChild(BiTree biTree, BiTNode *p, int LR, BiTNode *c) {
@@ -159,17 +197,16 @@ bool InsertChild(BiTree biTree, BiTNode *p, int LR, BiTNode *c) {
 }
 
 bool Visit(BiTNode *elemNode) {
-    if (!elemNode) {
-        printf("\n NULL \n");
+    if (BiTreeEmpty(elemNode)) {
         return false;
     }
 
     printf(" %c ", elemNode->data);
+    return true;
 }
 
 bool PreOrderTravers(BiTree biTree) {
     if (BiTreeEmpty(biTree)) {
-        printf("\n Tree is Empty \n");
         return false;
     }
 
@@ -182,7 +219,6 @@ bool PreOrderTravers(BiTree biTree) {
 
 bool InOrderTravers(BiTree biTree) {
     if (BiTreeEmpty(biTree)) {
-        printf("\n Tree is Empty \n");
         return false;
     }
 
@@ -195,7 +231,6 @@ bool InOrderTravers(BiTree biTree) {
 
 bool PostOrderTravers(BiTree biTree) {
     if (BiTreeEmpty(biTree)) {
-        printf("\n Tree is Empty \n");
         return false;
     }
 
@@ -237,9 +272,21 @@ bool LevelOrderTravers(BiTree biTree) {
             EnQueue_LQ(&linkQueue, p->rchild);
         }
     }
+
+    return true;
 }
 
-
+bool ClearBiTree(BiTree *biTree) {
+    if (DestroyBiTree(biTree)) {
+        if (!((*biTree) = (BiTree) malloc(sizeof(BiTNode))))
+            return false;
+        (*biTree)->data = '#';
+        (*biTree)->lchild = (*biTree)->rchild = NULL;
+        return true;
+    } else {
+        return false;
+    }
+}
 
 
 

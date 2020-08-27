@@ -12,27 +12,27 @@
  * @param biTree 二叉树
  * @return 成功构造空二叉树 true
  */
-bool InitBiTree(BiTree biTree);
+bool InitBiTree(BiTree *biTree);
 /**
  * 初始条件：二叉树存在
  * @param biTree 二叉树
  * @return 成功销毁二叉树 true
  */
-bool DestroyBiTree(BiTree biTree);
+bool DestroyBiTree(BiTree *biTree);
 
 /**
  * 先序构造二叉树，空格字符表示空树
  * @param biTree 二叉树
  * @return 成功构造二叉树 true
  */
-bool CreateBiTree(BiTree* biTree);
+bool CreateBiTree(BiTree *biTree);
 
 /**
  * 初始条件：二叉树存在
  * @param biTree 二叉树
  * @return 清空二叉树 true 否则 false
  */
-bool ClearBiTree(BiTree biTree);
+bool ClearBiTree(BiTree *biTree);
 
 /**
  * 初始条件：二叉树存在
@@ -94,7 +94,7 @@ BiTNode *LeftChild(BiTree biTree, BiTNode *elemNode);
  * @param elemNode 是 biTree 中的一个节点
  * @return 返回 elemNode 的的右孩子，若无返回 空
  */
-BiTNode *RightNode(BiTree biTree, BiTNode *elemNode);
+BiTNode *RightChild(BiTree biTree, BiTNode *elemNode);
 
 /**
  * 初始条件：二叉树存在
