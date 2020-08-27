@@ -4,8 +4,17 @@
 
 #include "BinaryTree.h"
 
+#include "./LinkQueue/LinkQueue.h"
+
 bool InitBiTree(BiTree biTree) {
 
+//    if (!(biTree = (BiTree) malloc(sizeof(BiTNode)))) {
+//        printf("\n No space \n");
+//    }
+
+    biTree->data = '#';
+    biTree->rchild = NULL;
+    biTree->lchild = NULL;
 
     return true;
 }
@@ -14,27 +23,29 @@ bool DestroyBiTree(BiTree biTree) {
 
 }
 
-bool CreateBiTree(BiTree biTree) {
+bool CreateBiTree(BiTree *biTree) {
+
 
     char ch;
-    scanf(&ch);
+    scanf("%c", &ch);
 
-    if (ch == ' ') {
+    if (ch == '#') {
         biTree = NULL;
     } else {
-        biTree = (BiTNode *) malloc(sizeof(BiTNode));
+        (*biTree) = (BiTNode *) malloc(sizeof(BiTNode));
         //动态分配内存失败
-        if (!biTree) {
+        if (!(*biTree)) {
             printf("\n No Space !!\n");
             return false;
         }
         //生成根节点
-        biTree->data = ch;
+        (*biTree)->data = ch;
         //构造左子树
-        CreateBiTree(biTree->lchild);
+        CreateBiTree(&(*biTree)->lchild);
         //构造右子树
-        CreateBiTree(biTree->rchild);
+        CreateBiTree(&(*biTree)->rchild);
     }
+
 
     return true;
 }
@@ -43,7 +54,7 @@ bool BiTreeEmpty(BiTree biTree) {
     return (biTree == NULL) ? true : false;
 }
 
-BiTNode *Root(BiTree biTree) {
+BiTree Root(BiTree biTree) {
     if (BiTreeEmpty(biTree)) {
         printf("\n Tree is Empty!!\n");
         return NULL;
@@ -143,7 +154,7 @@ bool InsertChild(BiTree biTree, BiTNode *p, int LR, BiTNode *c) {
 
         return true;
     } else {
-        return false
+        return false;
     }
 }
 
@@ -197,14 +208,16 @@ bool PostOrderTravers(BiTree biTree) {
 }
 
 bool LevelOrderTravers(BiTree biTree) {
+    //空树
     if (BiTreeEmpty(biTree)) {
         printf("\n Tree is Empty \n");
         return false;
     }
 
-    if (biTree->lchild==NULL&&biTree->rchild==NULL){
-        printf("\n %c \n",biTree->data);
-        return true
+    //只有根节点
+    if (biTree->lchild == NULL && biTree->rchild == NULL) {
+        printf("\n %c \n", biTree->data);
+        return true;
     }
 
     LinkQueue linkQueue;
@@ -212,10 +225,17 @@ bool LevelOrderTravers(BiTree biTree) {
 
     BiTNode *p;
 
-    EnQueue_LQ(&linkQueue,biTree);
+    EnQueue_LQ(&linkQueue, biTree);
 
-    while (!QueueEmpty_LQ(&linkQueue)){
-        DeQueue_LQ(&linkQueue,&p);
+    while (!QueueEmpty_LQ(&linkQueue)) {
+        DeQueue_LQ(&linkQueue, &p);
+        Visit(p);
+        if (p->lchild) {
+            EnQueue_LQ(&linkQueue, p->lchild);
+        }
+        if (p->rchild) {
+            EnQueue_LQ(&linkQueue, p->rchild);
+        }
     }
 }
 

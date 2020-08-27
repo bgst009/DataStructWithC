@@ -5,4 +5,8 @@
 #ifndef DATASTRUCTWITHC_TEST_H
 #define DATASTRUCTWITHC_TEST_H
 
+#include "./BinaryTree/BinaryTree.h"
+
+void testBT();
+
 #endif //DATASTRUCTWITHC_TEST_H

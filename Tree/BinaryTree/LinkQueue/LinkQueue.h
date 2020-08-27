@@ -5,14 +5,14 @@
 #ifndef DATASTRUCTWITHC_LINKQUEUE_H
 #define DATASTRUCTWITHC_LINKQUEUE_H
 
-#include "../../header.h"
-#include "../BinaryTree.h"
+#include "../TreeNode.h"
 
-#define BiTNode* QElemType
+typedef BiTNode* QElemType;
 
-typedef struct QNode {
+
+typedef struct QuNode {
     QElemType data;
-    struct QNode *next;
+    struct QuNode *next;
 } QNode, *QueuePtr;
 typedef struct {
     //头指针

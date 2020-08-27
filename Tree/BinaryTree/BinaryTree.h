@@ -5,13 +5,7 @@
 #ifndef DATASTRUCTWITHC_BINARYTREE_H
 #define DATASTRUCTWITHC_BINARYTREE_H
 
-#include "./LinkQueue/LinkQueue.h"
-
-typedef struct BiTNode {
-    TElemType data;
-    struct BiTNode *lchild, *rchild;
-} BiTNode, *BiTree;
-
+#include "./TreeNode.h"
 
 /**
  * 构造空二叉树
@@ -31,7 +25,7 @@ bool DestroyBiTree(BiTree biTree);
  * @param biTree 二叉树
  * @return 成功构造二叉树 true
  */
-bool CreateBiTree(BiTree biTree);
+bool CreateBiTree(BiTree* biTree);
 
 /**
  * 初始条件：二叉树存在
