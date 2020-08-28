@@ -6,6 +6,8 @@
 
 #include "./LinkQueue/LinkQueue.h"
 
+int Max(int depth, int depth1);
+
 bool InitBiTree(BiTree *biTree) {
     if (!((*biTree) = (BiTree) malloc(sizeof(BiTNode))))
         return false;
@@ -286,6 +288,17 @@ bool ClearBiTree(BiTree *biTree) {
     } else {
         return false;
     }
+}
+
+int BiTreeDepth(BiTree biTree) {
+    if (biTree == NULL)
+        return 0;
+    else
+        return 1 + Max(BiTreeDepth(biTree->rchild), BiTreeDepth(biTree->lchild));
+}
+
+int Max(int depth, int depth1) {
+    return depth >= depth1 ? depth : depth1;
 }
 
 

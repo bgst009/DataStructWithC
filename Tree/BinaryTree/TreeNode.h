@@ -12,5 +12,9 @@ typedef struct BiTNode {
     struct BiTNode *lchild, *rchild;
 } BiTNode, *BiTree;
 
+struct TreeNode;
+typedef struct TreeNode *Position;
+typedef struct TreeNode *SearchTree;
+typedef int ElementType;
 
 #endif //DATASTRUCTWITHC_TREENODE_H

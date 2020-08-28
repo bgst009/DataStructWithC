@@ -6,7 +6,10 @@
 #define DATASTRUCTWITHC_TEST_H
 
 #include "./BinaryTree/BinaryTree.h"
+#include "./BinaryTree/BinarySearchTree.h"
 
 void testBT();
+
+void testBST();
 
 #endif //DATASTRUCTWITHC_TEST_H

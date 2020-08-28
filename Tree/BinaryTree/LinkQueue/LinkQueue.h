@@ -8,6 +8,7 @@
 #include "../TreeNode.h"
 
 typedef BiTNode* QElemType;
+//typedef SearchTree QElemType;
 
 
 typedef struct QuNode {

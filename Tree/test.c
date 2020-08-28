@@ -5,8 +5,8 @@
 #include "test.h"
 
 int main() {
-    testBT();
-
+    testBST();
+//    testBT();
     return 0;
 }
 
@@ -18,7 +18,6 @@ void testBT() {
     InitBiTree(&init);
     Visit(Root(init));
     printf("\n\n");
-
 
 
     BiTree Tree;
@@ -57,6 +56,8 @@ void testBT() {
     printf("\n %c \n", Value(Tree, biTNode));
 
 
+    printf("\n 树的深度为 %d \n",BiTreeDepth(Tree));
+
     printf("\n 为树中的节点添加子树 \n");
 
     //HIGK#####
@@ -64,7 +65,10 @@ void testBT() {
     CreateBiTree(&new);
     setbuf(stdin, NULL);//使stdin输入流由默认缓冲区转为无缓冲区
 
+
+
     InsertChild(Tree, biTNode, 1, new);
+    printf("\n 树的深度为 %d \n",BiTreeDepth(Tree));
     printf("\n层序序遍历\n");
     LevelOrderTravers(Tree);
     printf("\n\n");
@@ -75,4 +79,23 @@ void testBT() {
 
     DestroyBiTree(&Tree);
     Visit(Root(Tree));
+}
+
+void testBST() {
+    SearchTree T;
+    srand(time(NULL));
+
+    for (int i = 0; i < 20; ++i) {
+        ElementType element = rand() % 100 + 1;
+        Insert(element, T);
+    }
+
+    InOrder(T);
+
+    printf("\nMax = %d\n",Retrieve(FindMax(T)));
+    printf("\nMin = %d\n",Retrieve(FindMin(T)));
+
+    Delete(Retrieve(FindMax(T)),T);
+    printf("\nMax = %d\n",Retrieve(FindMax(T)));
+
 }
