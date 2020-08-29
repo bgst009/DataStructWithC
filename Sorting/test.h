@@ -8,14 +8,6 @@
 #include "SelectionSort/SelectionSort.h"
 #include "InsertionSort/InsertionSort.h"
 
-void testSS();
-
-void testIS();
-void testIS_2();
-void testIS_3();
-
-
-
-
+void testSS_IS();
 
 #endif //DATASTRUCTWITHC_TEST_H
