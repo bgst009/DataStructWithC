@@ -17,3 +17,7 @@
 ## 树
 
 [Tree](./Doc/Tree.md)
+
+## 排序
+
+[Sorting](./Doc/Sorting.md)

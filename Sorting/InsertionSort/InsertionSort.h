@@ -1,0 +1,12 @@
+//
+// Created by bgst on 2020/8/29.
+//
+
+#ifndef DATASTRUCTWITHC_INSERTIONSORT_H
+#define DATASTRUCTWITHC_INSERTIONSORT_H
+
+#include "../header.h"
+
+
+
+#endif //DATASTRUCTWITHC_INSERTIONSORT_H
