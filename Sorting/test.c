@@ -23,8 +23,13 @@ void testSS_IS() {
 
     int size = 10;
     ElementType *array = generateRandomArray(size, 1, 1000);
-    char *name = "ShellShort";
-    testSort(name, ShellShort, array, size);
+    ElementType *array2 = copyIntArray(array, size);
+    char *name = "ShellShortWithoutExchange";
+    char *name2 = "ShellShort";
+    printArray(array, size);
+    testSort(name2, ShellShort, array2, size);
+    printArray(array2, size);
+    testSort(name, ShellShortWithoutExchange, array, size);
     printArray(array, size);
 
 }

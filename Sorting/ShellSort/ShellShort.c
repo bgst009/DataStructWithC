@@ -13,21 +13,6 @@ bool ShellShort(ElementType *a, int N) {
         return false;
     }
 
-//    int i, j, increment;
-//    ElementType tmp;
-//
-//    for (increment = size / 2; increment > 0; increment /= 2) {
-//        for (i = increment; i < size; i++) {
-//            tmp = array[i];
-//            for (j = i; j >= increment; j += increment)
-//                if (tmp < array[j - increment])
-//                    array[j] = array[j - increment];
-//                else
-//                    break;
-//
-//            array[i] = tmp;
-//        }
-//    }
 
     int h = 1;
     while (h < N / 3)h = 3 * h + 1;//1,4,13,40
@@ -40,44 +25,51 @@ bool ShellShort(ElementType *a, int N) {
         }
         h = h / 3;
     }
-
 
     return true;
 }
 
 bool ShellShortWithoutExchange(ElementType *array, int size) {
     //参数合法性判断
-    if (array == NULL || array <= 0) {
+    if (array == NULL || size <= 0) {
         printf("\n ShellShort ERROR \n");
         return false;
     }
 
-    int h = 1;
-    while (h < N / 3)h = 3 * h + 1;//1,4,13,40
-
-    while (h >= 1) {
-        for (int i = h; i < N; ++i) {
-            for (int j = i; j >= h && (a[j - h] > a[j]); j -= h) {
-                exchange(a, j - h, j);
-            }
-        }
-        h = h / 3;
-    }
-    int i, j, increment;
+    int increment = 1;
+    int j;
+    int i;
     ElementType tmp;
 
-    while (increment < size / 3) increment = 3 * increment + 1;
+//    while (increment < size / 3) increment = 3 * increment + 1;
+//
+//    while (increment >= 1) {//划分子序列
+//        for (int i = increment; i < size; ++i) {//对每个子序列进行插入排序
+//            ElementType element = array[i];
+//            //在子序列中找到 element 对应有序的位置
+//            for (j = i; j >= increment && (array[j - increment] > element); j -= increment) {
+//                array[j] = array[j - increment];
+//            }
+//            array[j] = element;
+//        }
+//        increment = increment / 3;
+//    }
 
-    for (increment; increment >= 1; increment /= 3) {
+    ElementType element;
+    //划分子序列
+    for (increment = (size / 2); increment > 0; increment /= 2) {
+        //对每个子序列以 increment 为增量进行插入排序
         for (i = increment; i < size; i++) {
-            tmp = array[i];
-            for (j = i; j >= increment; j += increment)
-                if (tmp < array[j - increment])
+            element = array[i];
+            //以 increment 为增量
+            for (j = i; j >= increment; j -= increment)
+                if (element < array[j - increment])
                     array[j] = array[j - increment];
                 else
                     break;
-
-            array[i] = tmp;
+            array[j] = element;
         }
     }
+
+    return true;
 }
