@@ -5,7 +5,7 @@
 #ifndef DATASTRUCTWITHC_SELECTIONSORT_H
 #define DATASTRUCTWITHC_SELECTIONSORT_H
 
-#include "../Template/Template.h"
+#include "../SortTestHelper/Template.h"
 
 /**
  *在 array 中每次选择最小的元素添加到返回数组中

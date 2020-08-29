@@ -8,7 +8,7 @@ bool exchange(ElementType *array, int i, int j) {
 
     //参数合法性判断
     if (array == NULL || i < 0 || j < 0) {
-        printf("\n ERROR \n");
+        printf("\n exchange ERROR \n");
         return false;
     }
 
@@ -22,7 +22,7 @@ bool exchange(ElementType *array, int i, int j) {
 bool isSort(ElementType *array, int length) {
     //参数合法性判断
     if (array == NULL || length <= 0) {
-        printf("\n ERROR \n");
+        printf("\n isSort ERROR \n");
         return false;
     }
 
@@ -38,7 +38,7 @@ bool isSort(ElementType *array, int length) {
 bool show(ElementType *array, int length) {
     //参数合法性判断
     if (array == NULL || length <= 0) {
-        printf("\n ERROR \n");
+        printf("\n show ERROR \n");
         return false;
     }
 
