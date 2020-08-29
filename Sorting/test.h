@@ -7,6 +7,7 @@
 
 #include "SelectionSort/SelectionSort.h"
 #include "InsertionSort/InsertionSort.h"
+#include "ShellSort/ShellShort.h"
 
 void testSS_IS();
 
