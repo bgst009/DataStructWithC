@@ -5,7 +5,9 @@
 #include "test.h"
 
 #include "../InsertionSort/InsertionSort.h"
+#include "../MergeSort/MergeSort.h"
 #include "../SelectionSort/SelectionSort.h"
+#include "../ShellSort/ShellShort.h"
 #include "SortTestHelper.h"
 
 int main() {
@@ -15,9 +17,13 @@ int main() {
 }
 
 void testSelectionSort_InsertionSort_NearlyRandom() {
-    int size = 100000;
-    ElementType* arrInsertionSort = generateNearlyOrderedArray(size, 50);
+    int size = 50000000;
+    ElementType* arrInsertionSort = generateRandomArray(size, 1, size * 5);
     ElementType* arrSelectionSort = copyIntArray(arrInsertionSort, size);
-    testSort("InsertionSort", InsertionSort, arrInsertionSort, size);
-    testSort("SelectionSort", SelectionSort, arrSelectionSort, size);
+    ElementType* arrShellSort = copyIntArray(arrSelectionSort, size);
+    ElementType* arrMergeSort = copyIntArray(arrShellSort, size);
+//    testSort("SelectionSort", SelectionSort, arrSelectionSort, size);
+//    testSort("InsertionSort", InsertionSortWithoutExchange, arrInsertionSort, size);
+    testSort("ShellSort", ShellShortWithoutExchange, arrInsertionSort, size);
+    testSort("MergeSort", MS, arrInsertionSort, size);
 }

@@ -6,6 +6,8 @@
 
 - 思想:在整个数组中找到最小的元素并且放到合适的位置
 
+- [code-example](../Sorting/SelectionSort/SelectionSort.c)
+
 ## InsertionSort
 
 > 只是前半部分的暂时排序结果
@@ -16,6 +18,7 @@
 
 - 有序数组 O(n);
 
+- [code-example](../Sorting/InsertionSort/InsertionSort.c)
 
 
 ### ShellSort
@@ -26,6 +29,13 @@
 
 -  [code-example](../Sorting/ShellSort/ShellShort.c)
   
-  ## MergeSort
+## MergeSort
   
   > [l....mid],[mid+1...r]
+
+-  [code-example](../Sorting/MergeSort/MergeSort.c)
+
+## 性能比较
+
+- ![](https://gitee.com/bgst007/markdownPicUrl/raw/master/20200830230619.png)
+- ![](https://gitee.com/bgst007/markdownPicUrl/raw/master/20200830231000.png)
