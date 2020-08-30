@@ -5,7 +5,7 @@
 #ifndef DATASTRUCTWITHC_SHELLSHORT_H
 #define DATASTRUCTWITHC_SHELLSHORT_H
 
-#include "../header.h"
+#include "header.h"
 
 bool ShellShort(ElementType *array, int size);
 bool ShellShortWithoutExchange(ElementType *array, int size);

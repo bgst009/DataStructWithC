@@ -3,7 +3,29 @@
 //
 
 #include "InsertionSort.h"
-#include "../SortTestHelper/Template.h"
+
+/**
+ * 交换数组中的元素
+ *
+ * @param array 数组
+ * @param i 元素下标
+ * @param j 元素下标
+ * @return boolean true if successful
+ */
+bool exch(ElementType *array, int i, int j) {
+
+  //参数合法性判断
+  if (array == NULL || i < 0 || j < 0) {
+    printf("\n exchange ERROR \n");
+    return false;
+  }
+
+  ElementType tmp = array[i];
+  array[i] = array[j];
+  array[j] = tmp;
+
+  return true;
+}
 
 bool InsertionSort(ElementType *array, int length) {
     //参数合法性判断
@@ -19,7 +41,7 @@ bool InsertionSort(ElementType *array, int length) {
         for (j = i; j > 0; j--) {
             //找前面大的
             if (array[j - 1] > array[j])
-                exchange(array, j, j - 1);
+              exch(array, j, j - 1);
             else break;
         }
     }

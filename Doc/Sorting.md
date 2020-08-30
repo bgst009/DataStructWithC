@@ -26,4 +26,6 @@
 
 -  [code-example](../Sorting/ShellSort/ShellShort.c)
   
+  ## MergeSort
   
+  > [l....mid],[mid+1...r]

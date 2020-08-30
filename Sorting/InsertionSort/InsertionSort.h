@@ -5,7 +5,7 @@
 #ifndef DATASTRUCTWITHC_INSERTIONSORT_H
 #define DATASTRUCTWITHC_INSERTIONSORT_H
 
-#include "../header.h"
+#include "header.h"
 
 /**
  *
