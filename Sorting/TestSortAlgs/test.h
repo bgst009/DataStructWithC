@@ -5,10 +5,7 @@
 #ifndef DATASTRUCTWITHC_TEST_H
 #define DATASTRUCTWITHC_TEST_H
 
-#include "../SelectionSort/SelectionSort.h"
-//#include "InsertionSort/InsertionSort.h"
-//#include "ShellSort/ShellShort.h"
-//#include "MergeSort/MergeSort.h"
+#include "header.h"
 
 void testSS_IS();
 

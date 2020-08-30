@@ -12,7 +12,7 @@
  * @param j 元素下标
  * @return boolean true if successful
  */
-bool exch(ElementType *array, int i, int j) {
+bool exchInsertionSort(ElementType *array, int i, int j) {
 
   //参数合法性判断
   if (array == NULL || i < 0 || j < 0) {
@@ -41,7 +41,7 @@ bool InsertionSort(ElementType *array, int length) {
         for (j = i; j > 0; j--) {
             //找前面大的
             if (array[j - 1] > array[j])
-              exch(array, j, j - 1);
+              exchInsertionSort(array, j, j - 1);
             else break;
         }
     }

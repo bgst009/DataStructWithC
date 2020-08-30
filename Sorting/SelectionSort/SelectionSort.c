@@ -12,7 +12,7 @@
  * @param j 元素下标
  * @return boolean true if successful
  */
-bool exch(ElementType *array, int i, int j) {
+bool exchSelectionSort(ElementType *array, int i, int j) {
 
   //参数合法性判断
   if (array == NULL || i < 0 || j < 0) {
@@ -43,7 +43,7 @@ bool SelectionSort(ElementType *array, int length) {
       if (array[j] < array[MinIndex])
         MinIndex = j;
     }
-    exch(array, i, MinIndex);
+    exchSelectionSort(array, i, MinIndex);
   }
 
   return true;

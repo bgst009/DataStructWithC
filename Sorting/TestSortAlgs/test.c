@@ -4,20 +4,20 @@
 
 #include "test.h"
 
+#include "../InsertionSort/InsertionSort.h"
+#include "../SelectionSort/SelectionSort.h"
+#include "SortTestHelper.h"
+
 int main() {
 
-  testSelectionSort();
-  return 0;
+    testSelectionSort_InsertionSort_NearlyRandom();
+    return 0;
 }
-void testSelectionSort() {
-//  int size = 10;
-//  ElementType *array = generateRandomArray(size, 1, 1000);
-//  char *name = "SelectionSort";
-//  testSort(name, SelectionSort, array, size);
 
-
+void testSelectionSort_InsertionSort_NearlyRandom() {
+    int size = 100000;
+    ElementType* arr = generateNearlyOrderedArray(size, 50);
+    ElementType* arr2 = copyIntArray(arr, size);
+    testSort("InsertionSort", InsertionSort, arr, size);
+    testSort("SelectionSort", SelectionSort, arr2, size);
 }
-void testInsertionSort() {}
-void testSelectionSort_InsertionSort_NearlyRandom() {}
-void testShellSort() {}
-void testMergeSort() {}

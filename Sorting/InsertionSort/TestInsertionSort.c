@@ -7,7 +7,7 @@
 
 int main() {
 
-    int size = 1000000;
+    int size = 100000;
     ElementType *arr = generateRandomArray(size, 1, 1000);
     ElementType *arr2 = generateNearlyOrderedArray(size,500);
     printf("\n RandomArray\n");
