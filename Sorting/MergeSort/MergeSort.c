@@ -91,7 +91,10 @@ void Sort(ElementType *Array, ElementType *aux, int lo, int hi) {
     int mid = lo + (hi - lo) / 2;
     Sort(Array, aux, lo, mid);
     Sort(Array, aux, mid + 1, hi);
-    Merge(Array, aux, lo, mid, hi);
+
+    //如果第一部分的最大的小于第二部分最小的那么就可以不用Merge
+    if (Array[mid] > Array[mid + 1])
+        Merge(Array, aux, lo, mid, hi);
 }
 
 void MS(ElementType *Array, int size) {

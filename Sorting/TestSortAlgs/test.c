@@ -17,7 +17,7 @@ int main() {
 }
 
 void testSelectionSort_InsertionSort_NearlyRandom() {
-    int size = 50000000;
+    int size = 5000000;
     ElementType* arrInsertionSort = generateRandomArray(size, 1, size * 5);
     ElementType* arrSelectionSort = copyIntArray(arrInsertionSort, size);
     ElementType* arrShellSort = copyIntArray(arrSelectionSort, size);
