@@ -4,6 +4,8 @@
 
 #include "MergeSort.h"
 
+#include "InsertionSort.h"
+
 void C_Merge(ElementType *Array,
              ElementType *TmpArray,
              int leftPosition,
@@ -97,6 +99,23 @@ void Sort(ElementType *Array, ElementType *aux, int lo, int hi) {
         Merge(Array, aux, lo, mid, hi);
 }
 
+void SortWithInsertionSort(ElementType *Array, ElementType *aux, int lo, int hi) {
+    //    if (hi <= lo) return;
+
+    if (hi - lo <= 15) {
+        InsertionSortInRange(Array, lo, hi);
+        return;
+    }
+
+    int mid = lo + (hi - lo) / 2;
+    Sort(Array, aux, lo, mid);
+    Sort(Array, aux, mid + 1, hi);
+
+    //如果第一部分的最大的小于第二部分最小的那么就可以不用Merge
+    if (Array[mid] > Array[mid + 1])
+        Merge(Array, aux, lo, mid, hi);
+}
+
 void MS(ElementType *Array, int size) {
     if (!Array || size <= 0) {
         printf("\n Invalid Parameters for MS\n");
@@ -110,5 +129,21 @@ void MS(ElementType *Array, int size) {
         return;
     }
     Sort(Array, aux, 0, size - 1);
+    free(aux);
+}
+
+void MS2(ElementType *Array, int size) {
+    if (!Array || size <= 0) {
+        printf("\n Invalid Parameters for MS\n");
+        return;
+    }
+    ElementType *aux;
+
+    //malloc 分配数组要右大小
+    if (!(aux = (ElementType *) malloc(sizeof(ElementType) * size))) {
+        printf("\n No space for temporary array\n");
+        return;
+    }
+    SortWithInsertionSort(Array, aux, 0, size - 1);
     free(aux);
 }

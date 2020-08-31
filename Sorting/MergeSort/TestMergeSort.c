@@ -7,9 +7,11 @@
 
 int main() {
 
-    int size = 100000000;
+    int size = 10000000;
     ElementType *arr = generateRandomArray(size, 1, 1000);
-    testSort("C_MergeSort", MS, arr, size);
+    ElementType *arr2 = copyIntArray(arr, size);
+    testSort("MS", MS, arr, size);
+    testSort("MS2",MS2, arr2, size);
 
     free(arr);
 
