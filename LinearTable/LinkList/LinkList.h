@@ -55,4 +55,15 @@ LinkList ReverseList_L(LinkList L);
  */
 LinkList ReverseList_L_2(LinkList L);
 
+/**
+ * 逆序打印链表(递归)
+ * @param L 链表
+ */
+void ReversePrint_Recursive(LinkList L);
+/**
+ * 逆序打印链表（栈）
+ * @param L 链表
+ */
+void ReversePrint_Stack(LinkList L);
+
 #endif//DATASTRUCTWITHC_LINKLIST_H

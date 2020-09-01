@@ -4,6 +4,8 @@
 
 #include "LinkList.h"
 
+#include "../../Stack/LinkStack/LinkStack.h"
+
 void createListHead(LinkList *L, int n) {
     LNode *p;
     int i;
@@ -34,6 +36,7 @@ void createListTail(LinkList *L, int n) {
     for (int j = 0; j < n; ++j) {
         p = (LNode *) malloc(sizeof(LNode));
         p->data = rand() % 100 + 1;//0-100;
+        p->next = NULL;
         r->next = p;
         r = p;
     }
@@ -178,4 +181,22 @@ LinkList ReverseList_L_2(LinkList L) {
         p = r;
     }
     return L;
+}
+
+void ReversePrint_Recursive(LinkList L) {
+    if (L->next != NULL) {
+        ReversePrint_Recursive(L->next);
+    }
+    if (L != NULL)
+        printf(" %d ", L->data);
+}
+
+void ReversePrint_Stack(LinkList L) {
+    LinkStack S;
+    InitStack_LS(&S);
+    LNode *p = L->next;
+    for (p; p != NULL; p = p->next) {
+        Push_LS(&S, p->data);
+    }
+    print_LS(&S);
 }
