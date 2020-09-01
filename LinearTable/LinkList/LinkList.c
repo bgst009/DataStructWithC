@@ -74,7 +74,7 @@ bool GetElem_L(LinkList L, int i, ElemType *e) {
 }
 
 bool ListTraverse_L(LinkList *L) {
-//    printf("\n ListTraverse_L \n");
+    //    printf("\n ListTraverse_L \n");
 
     LNode *p;
     p = (*L)->next;
@@ -147,4 +147,35 @@ bool ListInsert_L(LinkList L, int i, ElemType e) {
     p->next = s;
 
     return true;
+}
+
+
+LinkList ReverseList_L(LinkList L) {
+    LNode *pre, *p = L->next, *r = p->next;
+    p->next = NULL;
+    while (r != NULL) {
+        pre = p;
+        p = r;
+        r = r->next;
+        p->next = pre;
+    }
+    L->next = p;
+    return L;
+}
+
+LinkList ReverseList_L_2(LinkList L) {
+    LNode *p, *r;
+    p = L->next;
+    L->next = NULL;
+
+    while (p != NULL) {
+
+        r = p->next;
+
+        p->next = L->next;
+        L->next = p;
+
+        p = r;
+    }
+    return L;
 }

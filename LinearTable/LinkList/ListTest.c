@@ -3,19 +3,21 @@
 //
 
 #include "ListTest.h"
-#include "LinkList.h"
+
 #include "../SLinkList/SLinkList.h"
 #include "../SqList/SqList.h"
+#include "LinkList.h"
 
 
 int main() {
     printf("\n ==========================   H e l l o , W o r l d ! =================================== \n");
 
-    test_SqList();
+    //    test_SqList();
 
     test_LinkList();
 
-    test_SLinkList();
+    //    test_SLinkList();
+
     return 0;
 }
 
@@ -63,6 +65,8 @@ void test_LinkList() {
     createListTail(&L1, 19);
     ListTraverse_L(&L1);
 
+    ReverseList_L(&L1);
+    ListTraverse_L(&L1);
 
     printf("\n == after ListInsert_L   \n");
     ElemType elemType1 = 5;
@@ -73,7 +77,6 @@ void test_LinkList() {
     ListDelete_L(L1, 5, &elemType1);
     printf("\n del elem %d \n", elemType1);
     ListTraverse_L(&L1);
-
 }
 
 void test_SLinkList() {

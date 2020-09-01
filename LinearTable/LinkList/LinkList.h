@@ -4,11 +4,14 @@
 
 #ifndef DATASTRUCTWITHC_LINKLIST_H
 #define DATASTRUCTWITHC_LINKLIST_H
-#define ListInitSize  100
-#define ListIncrement  10
+#define ListInitSize 100
+#define ListIncrement 10
 typedef int ElemType;
 
-#include "../../header.h"
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 /* ===================================     Link List    ============================== */
 //线性表的单链表存储结构
@@ -39,4 +42,17 @@ bool ListDelete_L(LinkList L, int i, ElemType *e);
 //操作结果：打印输出链表
 bool ListTraverse_L(LinkList *L);
 
-#endif //DATASTRUCTWITHC_LINKLIST_H
+/**
+ * 原地翻转链表
+ * @param L 链表
+ * @return LinkList
+ */
+LinkList ReverseList_L(LinkList L);
+/**
+ * 头插法翻转链表
+ * @param L 链表
+ * @return LinkList
+ */
+LinkList ReverseList_L_2(LinkList L);
+
+#endif//DATASTRUCTWITHC_LINKLIST_H
