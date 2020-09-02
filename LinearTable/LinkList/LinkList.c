@@ -281,3 +281,31 @@ void DeleteRepeatElement(LinkList L) {
         }
     }
 }
+void MergeList(LinkList L1, LinkList L2) {
+    LNode *pa, *pb;
+    LNode *aTmp, *bTmp;
+
+    pa = L1;
+    pb = L2;
+
+    while (pa->next != NULL && pb->next != NULL) {
+        if (pa->next->data < pb->next->data) {
+            pa = pa->next;
+        } else if (pa->next->data > pb->next->data) {
+            bTmp = pb->next;    //暂存下一个，后面的操作会断链
+            pb->next = pa->next;//将 L2中的节点插入到 L1中
+            pa->next = pb;
+            pb = bTmp;//将 pb恢复
+        } else {      //pa->next->data == pb->next->data
+            pa = pa->next;
+            pb = pb->next;
+        }
+    }
+
+    // L1空了，把 L2剩余的部分接到 L1后面
+    if (pa->next == NULL) {
+        pa->next = pb->next;
+    } else if (pb->next == NULL) {//L2空了，把 L1剩余的部分接到 L1后面
+        pb->next = pa->next;
+    }
+}

@@ -5,14 +5,29 @@
 
 int main() {
     printf("\n == after createListTail  \n");
-    LinkList L1;
+    LinkList L1, L2;
     createIncreaseListHead(&L1, 10);
-    ListTraverse_L(&L1);
-    printf("\n");
+    createIncreaseListHead(&L2, 10);
+    //    ListTraverse_L(&L1);
+    //    printf("\n");
+    //    ListTraverse_L(&L2);
+    //    printf("\n");
 
-    DeleteRepeatElement(L1);
-    ListTraverse_L(&L1);
-    printf("\n");
+    L1 = ReverseList_L(L1);
+    L2 = ReverseList_L(L2);
+
+    //    ListTraverse_L(&L1);
+    //    printf("\n");
+    //    ListTraverse_L(&L2);
+    //    printf("\n");
+
+    MergeList(L1, L2);
+        ListTraverse_L(&L1);
+        printf("\n");
+
+    //    DeleteRepeatElement(L1);
+    //    ListTraverse_L(&L1);
+    //    printf("\n");
 
     //    LinkList AB[2];
     //    DepartList(L1, AB);

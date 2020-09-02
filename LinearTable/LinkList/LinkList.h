@@ -83,4 +83,11 @@ void DepartList(LinkList L, LinkList AB[2]);
  */
 void DeleteRepeatElement(LinkList L);
 
+/**
+ * 合并两个单调递增的有序序列
+ * @param L1
+ * @param L2
+ */
+void MergeList(LinkList L1, LinkList L2);
+
 #endif//DATASTRUCTWITHC_LINKLIST_H
