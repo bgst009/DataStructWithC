@@ -22,6 +22,7 @@ typedef struct LNode {
 
 //随机产生 n 个元素的值，建立带表头节点的单链线性表L（头插法）
 void createListHead(LinkList *L, int n);
+void createIncreaseListHead(LinkList *L, int n);
 
 //随机产生 n 个元素的值，建立带表头节点的单链线性表L（尾插法）
 void createListTail(LinkList *L, int n);
@@ -42,7 +43,7 @@ bool ListDelete_L(LinkList L, int i, ElemType *e);
 //操作结果：打印输出链表
 bool ListTraverse_L(LinkList *L);
 
-bool IsEmpty(const LinkList L);
+bool IsEmpty(LinkList L);
 
 /**
  * 原地翻转链表
@@ -74,5 +75,12 @@ void ReversePrint_Stack(LinkList L);
  * @param AB 用于返回两个链表
  */
 void DepartList(LinkList L, LinkList AB[2]);
+
+/**
+ * 删除有序链表中的重复元素 ,时间复杂度 O(n) 空间复杂度 O(1)
+ *
+ * @param L 递增有序链表
+ */
+void DeleteRepeatElement(LinkList L);
 
 #endif//DATASTRUCTWITHC_LINKLIST_H

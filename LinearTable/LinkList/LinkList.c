@@ -22,6 +22,26 @@ void createListHead(LinkList *L, int n) {
     }
 }
 
+void createIncreaseListHead(LinkList *L, int n) {
+    LNode *p;
+    int i;
+    ElemType pre_elem = 0, elem;
+    //带头结点的单链表 L (L 就是头节点)
+    *L = (LinkList) malloc(sizeof(LNode));
+    (*L)->next = NULL;
+    for (int j = 0; j < n; ++j) {
+        p = (LNode *) malloc(sizeof(LNode));
+        elem = rand() % 2;
+        if (elem)
+            p->data = pre_elem;
+        else
+            p->data = j;
+        pre_elem = j;
+        p->next = (*L)->next;
+        (*L)->next = p;
+    }
+}
+
 void createListTail(LinkList *L, int n) {
     //r 为指向尾部的指针
     LNode *r;
@@ -124,6 +144,7 @@ bool ListDelete_L(LinkList L, int i, ElemType *e) {
     return true;
 }
 
+
 bool ListInsert_L(LinkList L, int i, ElemType e) {
     //声明节点 p
     LNode *p;
@@ -151,7 +172,6 @@ bool ListInsert_L(LinkList L, int i, ElemType e) {
 
     return true;
 }
-
 
 LinkList ReverseList_L(LinkList L) {
     LNode *pre, *p = L->next, *r = p->next;
@@ -190,7 +210,6 @@ void ReversePrint_Recursive(LinkList L) {
     if (L != NULL)
         printf(" %d ", L->data);
 }
-
 void ReversePrint_Stack(LinkList L) {
     LinkStack S;
     InitStack_LS(&S);
@@ -241,8 +260,24 @@ void DepartList(LinkList L, LinkList AB[2]) {
     AB[0] = A;
     AB[1] = B;
 }
-bool IsEmpty(const LinkList L) {
+bool IsEmpty(LinkList L) {
     if (L->next == NULL)
         return true;
     return false;
+}
+void DeleteRepeatElement(LinkList L) {
+    if (IsEmpty(L))
+        return;
+
+    LNode *cur, *c_next;
+    cur = L->next;
+    while (cur->next) {
+        c_next = cur->next;
+        if (cur->data == c_next->data) {
+            cur->next = c_next->next;
+            free(c_next);
+        } else {
+            cur = cur->next;
+        }
+    }
 }
