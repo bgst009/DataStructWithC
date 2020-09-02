@@ -42,6 +42,8 @@ bool ListDelete_L(LinkList L, int i, ElemType *e);
 //操作结果：打印输出链表
 bool ListTraverse_L(LinkList *L);
 
+bool IsEmpty(const LinkList L);
+
 /**
  * 原地翻转链表
  * @param L 链表
@@ -65,5 +67,12 @@ void ReversePrint_Recursive(LinkList L);
  * @param L 链表
  */
 void ReversePrint_Stack(LinkList L);
+
+/**
+ * 按顺序奇偶分成两个链表（第一个元素为序列号为 0 记作序号为偶数字的节点）
+ * @param L 待拆链表
+ * @param AB 用于返回两个链表
+ */
+void DepartList(LinkList L, LinkList AB[2]);
 
 #endif//DATASTRUCTWITHC_LINKLIST_H

@@ -6,14 +6,22 @@
 int main() {
     printf("\n == after createListTail  \n");
     LinkList L1;
-    createListTail(&L1, 5);
+    createListTail(&L1, 50);
     ListTraverse_L(&L1);
     printf("\n");
-    ReversePrint_Recursive(L1);
-    printf("\n");
-    ReversePrint_Stack(L1);
-    L1 = ReverseList_L(L1);
-    ListTraverse_L(&L1);
+    LinkList AB[2];
+    DepartList(L1, AB);
+    printf("\n A : ");
+    ListTraverse_L(&AB[0]);
+    printf("\n B : ");
+    ListTraverse_L(&AB[1]);
+
+
+    //    ReversePrint_Recursive(L1);
+    //    printf("\n");
+    //    ReversePrint_Stack(L1);
+    //    L1 = ReverseList_L(L1);
+    //    ListTraverse_L(&L1);
 
     return 0;
 }

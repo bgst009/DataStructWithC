@@ -200,3 +200,49 @@ void ReversePrint_Stack(LinkList L) {
     }
     print_LS(&S);
 }
+void DepartList(LinkList L, LinkList AB[2]) {
+
+    if (IsEmpty(L)) {
+        printf("\n List is empty\n");
+        return;
+    }
+    //奇数列链表
+    LinkList A = (LinkList) malloc(sizeof(LNode));
+    //偶数列链表
+    LinkList B = (LinkList) malloc(sizeof(LNode));
+    LNode *pa, *pb;
+    pb = L->next;
+    pa = pb->next;
+    A->next = pa;
+    B->next = pb;
+
+    while (pb != NULL && pa != NULL) {
+        //pa 是最后一个节点
+        if (pa->next == NULL) {
+            pb->next = NULL;
+            pb = pb->next;
+            pa = pa->next;
+            break;
+        }
+
+        //pb 是最后一个节点
+        if (pb->next == NULL) {
+            pb = pb->next;
+            pa = pb->next;
+        }
+
+        //没有到达最后指针向后移动两个单位
+        pb->next = pa->next;
+        pb = pb->next;
+        pa->next = pb->next;
+        pa = pa->next;
+    }
+
+    AB[0] = A;
+    AB[1] = B;
+}
+bool IsEmpty(const LinkList L) {
+    if (L->next == NULL)
+        return true;
+    return false;
+}
