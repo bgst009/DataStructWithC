@@ -16,7 +16,7 @@ void createListHead(LinkList *L, int n) {
     srand(time(0));
     for (int j = 0; j < n; ++j) {
         p = (LNode *) malloc(sizeof(LNode));
-        p->data = rand() % 100 + 1;//0-100;
+        p->data = rand() % 15 + 1;//0-100;
         p->next = (*L)->next;
         (*L)->next = p;
     }
@@ -346,4 +346,51 @@ LinkList FindSameElement(LinkList L1, LinkList L2) {
     }
 
     return resultList;
+}
+void UnionLinkList(LinkList L1, LinkList L2) {
+    LNode *pa, *pb;
+    LNode *aTmp, *bTmp;
+    LinkList L3;
+
+
+    pa = L1->next;
+    pb = L2->next;
+    L3 = L1;
+    L3->next = NULL;
+
+    while (pa->next != NULL && pb->next != NULL) {
+        if (pa->data == pb->data) {
+            //将 L1中相同的节点插入到 L3中
+            aTmp = pa;
+            pa = pa->next;
+            aTmp->next = L3->next;
+            L3->next = aTmp;
+
+            //删除 L2中相同的节点
+            bTmp = pb;
+            pb = pb->next;
+            free(bTmp);
+        } else if (pa->data > pb->data) {
+            bTmp = pb;
+            pb = pb->next;
+            free(bTmp);
+        } else {//pa->data < pb->data
+            aTmp = pa;
+            pa = pa->next;
+            free(aTmp);
+        }
+    }
+
+    while (pa) {
+        aTmp = pa;
+        pa = pa->next;
+        free(aTmp);
+    }
+    while (pb) {
+        bTmp = pb;
+        pb = pb->next;
+        free(bTmp);
+    }
+
+    free(L2);
 }

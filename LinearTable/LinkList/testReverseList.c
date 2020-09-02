@@ -6,8 +6,8 @@
 int main() {
     printf("\n == after createListTail  \n");
     LinkList L1, L2;
-    createIncreaseListHead(&L1, 10);
-    createIncreaseListHead(&L2, 10);
+    createIncreaseListHead(&L1, 20);
+    createIncreaseListHead(&L2, 20);
     //    ListTraverse_L(&L1);
     //    printf("\n");
     //    ListTraverse_L(&L2);
@@ -23,7 +23,7 @@ int main() {
 
     //    MergeList(L1, L2);
 
-    L1 = FindSameElement(L1, L2);
+    UnionLinkList(L1, L2);
     ListTraverse_L(&L1);
     printf("\n");
 

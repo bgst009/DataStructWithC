@@ -98,4 +98,11 @@ void MergeList(LinkList L1, LinkList L2);
  */
 LinkList FindSameElement(LinkList L1, LinkList L2);
 
+/**
+ * 求 L1与 L2的交集
+ * @param L1 递增有序链表
+ * @param L2 递增有序链表
+ */
+void UnionLinkList(LinkList L1, LinkList L2);
+
 #endif//DATASTRUCTWITHC_LINKLIST_H
