@@ -90,4 +90,12 @@ void DeleteRepeatElement(LinkList L);
  */
 void MergeList(LinkList L1, LinkList L2);
 
+/**
+ * 在递增的两个序列中把相同的节点组成一个新的链表并返回
+ * @param L1 递增有序链表
+ * @param L2 递增有序链表
+ * @return L1,l2 中共同元素组成的链表
+ */
+LinkList FindSameElement(LinkList L1, LinkList L2);
+
 #endif//DATASTRUCTWITHC_LINKLIST_H

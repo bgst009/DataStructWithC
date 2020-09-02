@@ -16,14 +16,16 @@ int main() {
     L1 = ReverseList_L(L1);
     L2 = ReverseList_L(L2);
 
-    //    ListTraverse_L(&L1);
-    //    printf("\n");
-    //    ListTraverse_L(&L2);
-    //    printf("\n");
+    ListTraverse_L(&L1);
+    printf("\n");
+    ListTraverse_L(&L2);
+    printf("\n");
 
-    MergeList(L1, L2);
-        ListTraverse_L(&L1);
-        printf("\n");
+    //    MergeList(L1, L2);
+
+    L1 = FindSameElement(L1, L2);
+    ListTraverse_L(&L1);
+    printf("\n");
 
     //    DeleteRepeatElement(L1);
     //    ListTraverse_L(&L1);

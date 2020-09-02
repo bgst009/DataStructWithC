@@ -309,3 +309,41 @@ void MergeList(LinkList L1, LinkList L2) {
         pb->next = pa->next;
     }
 }
+LinkList FindSameElement(LinkList L1, LinkList L2) {
+    LinkList resultList = (LinkList) malloc(sizeof(LNode));
+    if (resultList == NULL) {
+        perror("malloc");
+        return NULL;
+    }
+    resultList->next = NULL;
+
+    LNode *pa, *pb;
+    LNode *aTmp, *bTmp;
+
+    pa = L1;
+    pb = L2;
+
+    while (pa->next != NULL && pb->next != NULL) {
+        //找到相同的元素，则分配一块内存来存存储
+        if (pa->next->data == pb->next->data) {
+            //创建新节点
+            LNode *node = (LNode *) malloc(sizeof(LNode));
+            node->data = pb->next->data;
+            node->next = NULL;
+
+            //头插法
+            node->next = resultList->next;
+            resultList->next = node;
+
+            //向后移动工作指针
+            pa = pa->next;
+            pb = pb->next;
+        } else if (pa->next->data > pb->next->data) {//较小的节点工作指针向后移动
+            pb = pb->next;
+        } else {//pa->next->data < pb->next->data
+            pa = pa->next;
+        }
+    }
+
+    return resultList;
+}
