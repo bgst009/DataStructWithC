@@ -22,6 +22,66 @@ void createListHead(LinkList *L, int n) {
     }
 }
 
+void createDoubleList(DLinkList L, int n) {
+    DNode *p;
+    L->Next = L;
+
+    L->Prior = L;
+
+    srand(time(NULL));
+    for (int i = 0; i < n; i++) {
+        p = (DNode *) malloc(sizeof(DNode));
+        p->data = rand() % 15 + 1;
+
+        p->Next = L->Prior->Next;
+        p->Prior = L->Prior;
+        L->Prior->Next = p;
+        L->Prior = p;
+    }
+}
+
+void createSymmetricDoubleList(DLinkList L, int n) {
+    DNode *p;
+    L->Next = L;
+
+
+    LinkStack S;
+    InitStack_LS(&S);
+    ElemType elem;
+
+    L->Prior = L;
+
+    srand(time(NULL));
+    for (int i = 0; i < n / 2; i++) {
+        p = (DNode *) malloc(sizeof(DNode));
+        p->data = rand() % 15 + 1;
+
+        Push_LS(&S, p->data);
+
+        p->Next = L->Prior->Next;
+        p->Prior = L->Prior;
+        L->Prior->Next = p;
+        L->Prior = p;
+    }
+
+    if (n % 2 != 0) {
+        Push_LS(&S, n);
+    }
+
+    for (int i = n / 2; i < n; ++i) {
+        p = (DNode *) malloc(sizeof(DNode));
+
+        Pop_LS(&S, &elem);
+
+        p->data = elem;
+
+        p->Next = L->Prior->Next;
+        p->Prior = L->Prior;
+        L->Prior->Next = p;
+        L->Prior = p;
+    }
+}
+
 void createIncreaseListHead(LinkList *L, int n) {
     LNode *p;
     int i;
@@ -96,6 +156,21 @@ bool GetElem_L(LinkList L, int i, ElemType *e) {
     return p;
 }
 
+
+bool ListTraverse_DL(DLinkList L) {
+    DNode *p;
+    p = L->Next;
+    int j = 0;
+    while (p != L) {
+        printf(" %d ", p->data);
+        p = p->Next;
+        ++j;
+        if (j % 20 == 0) {
+            printf("\n");
+        }
+    }
+}
+
 bool ListTraverse_L(LinkList *L) {
     //    printf("\n ListTraverse_L \n");
 
@@ -144,7 +219,6 @@ bool ListDelete_L(LinkList L, int i, ElemType *e) {
     return true;
 }
 
-
 bool ListInsert_L(LinkList L, int i, ElemType e) {
     //声明节点 p
     LNode *p;
@@ -172,7 +246,6 @@ bool ListInsert_L(LinkList L, int i, ElemType e) {
 
     return true;
 }
-
 LinkList ReverseList_L(LinkList L) {
     LNode *pre, *p = L->next, *r = p->next;
     p->next = NULL;
@@ -185,7 +258,6 @@ LinkList ReverseList_L(LinkList L) {
     L->next = p;
     return L;
 }
-
 LinkList ReverseList_L_2(LinkList L) {
     LNode *p, *r;
     p = L->next;
@@ -202,7 +274,6 @@ LinkList ReverseList_L_2(LinkList L) {
     }
     return L;
 }
-
 void ReversePrint_Recursive(LinkList L) {
     if (L->next != NULL) {
         ReversePrint_Recursive(L->next);
@@ -393,4 +464,15 @@ void UnionLinkList(LinkList L1, LinkList L2) {
     }
 
     free(L2);
+}
+bool symmetry(DLinkList L) {
+    DNode *front = L->Next;
+    DNode *rear = L->Prior;
+
+    for (; rear != front && rear->Next != front; rear = rear->Prior, front = front->Next) {
+        if (rear->data != front->data)
+            return false;
+    }
+
+    return true;
 }

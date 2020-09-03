@@ -3,7 +3,26 @@
 //
 #include "LinkList.h"
 
+void test01();
+void test02();
+
 int main() {
+    test02();
+    return 0;
+}
+
+void test02() {
+    DLinkList DL;
+    createSymmetricDoubleList(DL, 5);
+    ListTraverse_DL(DL);
+
+    if (symmetry(DL))
+        printf("\n Symmetry test true \n");
+    else
+        printf("\n Symmetry test false \n");
+}
+
+void test01() {
     printf("\n == after createListTail  \n");
     LinkList L1, L2;
     createIncreaseListHead(&L1, 20);
@@ -44,6 +63,4 @@ int main() {
     //    ReversePrint_Stack(L1);
     //    L1 = ReverseList_L(L1);
     //    ListTraverse_L(&L1);
-
-    return 0;
 }

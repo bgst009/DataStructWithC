@@ -20,8 +20,17 @@ typedef struct LNode {
     struct LNode *next;
 } LNode, *LinkList;
 
+//循环双链表
+typedef struct DNode {
+    ElemType data;
+    struct DNode *Prior;
+    struct DNode *Next;
+} DNode, *DLinkList;
+
 //随机产生 n 个元素的值，建立带表头节点的单链线性表L（头插法）
 void createListHead(LinkList *L, int n);
+void createDoubleList(DLinkList L, int n);
+void createSymmetricDoubleList(DLinkList L, int n);
 void createIncreaseListHead(LinkList *L, int n);
 
 //随机产生 n 个元素的值，建立带表头节点的单链线性表L（尾插法）
@@ -42,6 +51,7 @@ bool ListDelete_L(LinkList L, int i, ElemType *e);
 //ListTraverse
 //操作结果：打印输出链表
 bool ListTraverse_L(LinkList *L);
+bool ListTraverse_DL(DLinkList L);
 
 bool IsEmpty(LinkList L);
 
@@ -104,5 +114,12 @@ LinkList FindSameElement(LinkList L1, LinkList L2);
  * @param L2 递增有序链表
  */
 void UnionLinkList(LinkList L1, LinkList L2);
+
+/**
+ * 判断循环双链表是否对称
+ * @param L 循环双链表
+ * @return 对称 true
+ */
+bool symmetry(DLinkList L);
 
 #endif//DATASTRUCTWITHC_LINKLIST_H
