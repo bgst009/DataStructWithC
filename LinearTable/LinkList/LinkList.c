@@ -106,7 +106,6 @@ void createListTail(LinkList *L, int n) {
     //r 为指向尾部的指针
     LNode *r;
     LNode *p;
-    int i;
     //带头结点的单链表 L (L 就是头指针)
     *L = (LinkList) malloc(sizeof(LNode));
     (*L)->next = NULL;
@@ -122,6 +121,25 @@ void createListTail(LinkList *L, int n) {
     }
     r->next = NULL;
 }
+
+void createCircleListTail(LinkList L, int n) {
+    LNode *r;
+    LNode *p;
+
+    L->next = L;
+    r = L;
+
+
+    srand(time(NULL));
+    for (int i = 0; i < n; ++i) {
+        p = (LNode *) malloc(sizeof(LNode));
+        p->data = rand() % 100 + 1;//0-100;
+        p->next = r->next;
+        r->next = p;
+        r = p;
+    }
+}
+
 
 bool GetElem_L(LinkList L, int i, ElemType *e) {
     //声明节点 p
@@ -156,7 +174,6 @@ bool GetElem_L(LinkList L, int i, ElemType *e) {
     return p;
 }
 
-
 bool ListTraverse_DL(DLinkList L) {
     DNode *p;
     p = L->Next;
@@ -174,8 +191,6 @@ bool ListTraverse_DL(DLinkList L) {
 }
 
 bool ListTraverse_L(LinkList *L) {
-    //    printf("\n ListTraverse_L \n");
-
     LNode *p;
     p = (*L)->next;
     //计数器
@@ -184,11 +199,14 @@ bool ListTraverse_L(LinkList *L) {
     while (p) {
         printf(" %d ", p->data);
         p = p->next;
+        if (p == (*L))
+            return false;
         ++j;
         if (j % 20 == 0) {
             printf("\n");
         }
     }
+    return true;
 }
 
 bool ListDelete_L(LinkList L, int i, ElemType *e) {
@@ -220,7 +238,6 @@ bool ListDelete_L(LinkList L, int i, ElemType *e) {
 
     return true;
 }
-
 bool ListInsert_L(LinkList L, int i, ElemType e) {
     //声明节点 p
     LNode *p;

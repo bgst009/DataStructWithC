@@ -34,6 +34,7 @@ void createIncreaseListHead(LinkList *L, int n);
 
 //随机产生 n 个元素的值，建立带表头节点的单链线性表L（尾插法）
 void createListTail(LinkList *L, int n);
+void createCircleListTail(LinkList L, int n);
 
 //初始条件：线性表已经存在 1<=i<=ListLength(L)
 //操作结果：用 e 返回 L 中第 i 个元素的值
