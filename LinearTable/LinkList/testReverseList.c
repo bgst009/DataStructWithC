@@ -13,9 +13,10 @@ int main() {
 
 void test02() {
 
-    LinkList L1;
-    createCircleListTail(L1,15);
+    LinkList L1 = (LinkList) malloc(sizeof(LNode));
+    createCircleListTail(L1, 5);
     ListTraverse_L(&L1);
+    deleteSmall(L1);
 
     //    DLinkList DL1,DL2;
     //    createDoubleList(DL1, 5);

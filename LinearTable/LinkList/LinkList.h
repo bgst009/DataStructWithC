@@ -129,4 +129,10 @@ bool symmetry(DLinkList L);
  */
 void connectDLinkList(DLinkList L1, DLinkList L2);
 
+/**
+ * 循环删除单链表中的最小节点，直至链表为空
+ * @param L1 循环单链表
+ */
+void deleteSmall(LinkList L1);
+
 #endif//DATASTRUCTWITHC_LINKLIST_H

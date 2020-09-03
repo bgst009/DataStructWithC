@@ -199,13 +199,20 @@ bool ListTraverse_L(LinkList *L) {
     while (p) {
         printf(" %d ", p->data);
         p = p->next;
-        if (p == (*L))
+
+        //循环单链表
+        if (p == (*L)) {
+            printf("\n");
             return false;
+        }
+
         ++j;
         if (j % 20 == 0) {
             printf("\n");
         }
     }
+
+    printf("\n");
     return true;
 }
 
@@ -505,4 +512,28 @@ void connectDLinkList(DLinkList L1, DLinkList L2) {
     L2->Next->Prior = L1->Prior;//把L2 的首元节点的前驱改为L1 的尾节点
     L1->Prior->Next = L2->Next; //L1 的尾节点的后继为L2 的首元节点
     L1->Prior = L2->Prior;      //把L1 的尾节点指向L2 的尾节点
+}
+void deleteSmall(LinkList L) {
+    LNode *p, *pre;
+    LNode *min, *preMin;
+
+    while (L->next != L) {//not empty
+        pre = L;
+        p = L->next;
+        min = p;
+        preMin = pre;
+
+        while (p != L) {//loop findMin
+            if (p->data < min->data) {
+                min = p;
+                preMin = pre;
+            }
+            p = p->next;
+            pre = pre->next;
+        }
+        printf(" %d", min->data);//print min
+        preMin->next = min->next;//delete min
+        free(min);
+    }
+    free(L);//delete LinkList
 }
