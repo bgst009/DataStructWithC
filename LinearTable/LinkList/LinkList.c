@@ -169,6 +169,8 @@ bool ListTraverse_DL(DLinkList L) {
             printf("\n");
         }
     }
+    printf("\n");
+    return true;
 }
 
 bool ListTraverse_L(LinkList *L) {
@@ -475,4 +477,15 @@ bool symmetry(DLinkList L) {
     }
 
     return true;
+}
+void connectDLinkList(DLinkList L1, DLinkList L2) {
+
+    if (L1->Next == NULL || L2->Next == NULL)
+        return;
+
+    L2->Prior->Next = L1->Prior->Next;//把L2 的尾节点的后继改为L1 尾节点的后继
+    //将L2 的首元节点和L1 的尾节点链接起来
+    L2->Next->Prior = L1->Prior;//把L2 的首元节点的前驱改为L1 的尾节点
+    L1->Prior->Next = L2->Next; //L1 的尾节点的后继为L2 的首元节点
+    L1->Prior = L2->Prior;      //把L1 的尾节点指向L2 的尾节点
 }

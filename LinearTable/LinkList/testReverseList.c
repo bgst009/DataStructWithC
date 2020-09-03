@@ -12,14 +12,18 @@ int main() {
 }
 
 void test02() {
-    DLinkList DL;
-    createSymmetricDoubleList(DL, 5);
-    ListTraverse_DL(DL);
+    DLinkList DL1,DL2;
+    createDoubleList(DL1, 5);
+    ListTraverse_DL(DL1);
+    createDoubleList(DL2, 8);
+    ListTraverse_DL(DL2);
+    connectDLinkList(DL1,DL2);
+    ListTraverse_DL(DL1);
 
-    if (symmetry(DL))
-        printf("\n Symmetry test true \n");
-    else
-        printf("\n Symmetry test false \n");
+//    if (symmetry(DL))
+//        printf("\n Symmetry test true \n");
+//    else
+//        printf("\n Symmetry test false \n");
 }
 
 void test01() {

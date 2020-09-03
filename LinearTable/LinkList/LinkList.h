@@ -4,8 +4,7 @@
 
 #ifndef DATASTRUCTWITHC_LINKLIST_H
 #define DATASTRUCTWITHC_LINKLIST_H
-#define ListInitSize 100
-#define ListIncrement 10
+
 typedef int ElemType;
 
 #include <stdbool.h>
@@ -121,5 +120,12 @@ void UnionLinkList(LinkList L1, LinkList L2);
  * @return 对称 true
  */
 bool symmetry(DLinkList L);
+
+/**
+ * 合并两个链表 L1，L2。L2并入到L1后
+ * @param L1 循环双链表
+ * @param L2 循环双链表
+ */
+void connectDLinkList(DLinkList L1, DLinkList L2);
 
 #endif//DATASTRUCTWITHC_LINKLIST_H
