@@ -24,10 +24,12 @@ typedef struct DNode {
     ElemType data;
     struct DNode *Prior;
     struct DNode *Next;
+    int freq;
 } DNode, *DLinkList;
 
 //随机产生 n 个元素的值，建立带表头节点的单链线性表L（头插法）
 void createListHead(LinkList *L, int n);
+void createCirculateDoubleListTail(DLinkList L, int n);
 void createDoubleList(DLinkList L, int n);
 void createSymmetricDoubleList(DLinkList L, int n);
 void createIncreaseListHead(LinkList *L, int n);
@@ -134,5 +136,14 @@ void connectDLinkList(DLinkList L1, DLinkList L2);
  * @param L1 循环单链表
  */
 void deleteSmall(LinkList L1);
+
+/**
+ * 在带有表头节点的非循环双向链表中定位元素并返回节点，同时设置节点访问频率并按频率进行排序始终然频率大的在最前
+ * @param L 带有表头节点的非循环双向链表
+ * @param elem 定位元素
+ * @return 节点==L -> 没有找到 else 找到
+ */
+DNode *Locate(DLinkList L, ElemType elem);
+
 
 #endif//DATASTRUCTWITHC_LINKLIST_H

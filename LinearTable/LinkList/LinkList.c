@@ -23,6 +23,12 @@ void createListHead(LinkList *L, int n) {
 }
 
 void createDoubleList(DLinkList L, int n) {
+    createCirculateDoubleListTail(L, n);
+    L->Prior->Next = NULL;
+    L->Prior = NULL;
+}
+
+void createCirculateDoubleListTail(DLinkList L, int n) {
     DNode *p;
     L->Next = L;
 
@@ -31,7 +37,7 @@ void createDoubleList(DLinkList L, int n) {
     srand(time(NULL));
     for (int i = 0; i < n; i++) {
         p = (DNode *) malloc(sizeof(DNode));
-        p->data = rand() % 15 + 1;
+        p->data = rand() % 25 + 1;
 
         p->Next = L->Prior->Next;
         p->Prior = L->Prior;
@@ -122,6 +128,7 @@ void createListTail(LinkList *L, int n) {
     r->next = NULL;
 }
 
+
 void createCircleListTail(LinkList L, int n) {
     LNode *r;
     LNode *p;
@@ -139,7 +146,6 @@ void createCircleListTail(LinkList L, int n) {
         r = p;
     }
 }
-
 
 bool GetElem_L(LinkList L, int i, ElemType *e) {
     //声明节点 p
@@ -181,6 +187,12 @@ bool ListTraverse_DL(DLinkList L) {
     while (p != L) {
         printf(" %d ", p->data);
         p = p->Next;
+
+        if (p == NULL) {
+            printf("\n");
+            return true;
+        }
+
         ++j;
         if (j % 20 == 0) {
             printf("\n");
@@ -215,7 +227,6 @@ bool ListTraverse_L(LinkList *L) {
     printf("\n");
     return true;
 }
-
 bool ListDelete_L(LinkList L, int i, ElemType *e) {
     //声明节点 p
     LNode *p;
@@ -536,4 +547,47 @@ void deleteSmall(LinkList L) {
         free(min);
     }
     free(L);//delete LinkList
+}
+
+DNode *Locate(DLinkList L, ElemType elem) {
+    if (L->Next == NULL) {
+        printf("\n DLinkList is empty\n");
+        return L;
+    }
+
+    DNode *p, *q;
+    p = L->Next;
+
+    while (p && p->data != elem) {
+        p = p->Next;
+    }
+
+    if (!p) {
+        printf("\n fail to find \n");
+//        exit(0);
+        return L;
+    } else {
+        p->freq++;
+
+        //delete p But not free
+        if (p->Next != NULL) {
+            p->Next->Prior = p->Prior;
+        }
+        p->Prior->Next = p->Next;
+
+        //insert into right place
+        q = p->Prior;
+        //find where to insert
+        while (q != L && q->freq <= p->freq) {
+            q = q->Prior;
+        }
+
+        //Now find, So insert into right place
+        p->Next = q->Next;
+        q->Next->Prior = p;
+        p->Prior = q;
+        q->Next = p;
+    }
+
+    return p;
 }

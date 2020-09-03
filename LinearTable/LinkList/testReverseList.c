@@ -13,10 +13,23 @@ int main() {
 
 void test02() {
 
-    LinkList L1 = (LinkList) malloc(sizeof(LNode));
-    createCircleListTail(L1, 5);
-    ListTraverse_L(&L1);
-    deleteSmall(L1);
+    DLinkList L1 = (DLinkList) malloc(sizeof(LNode));
+    createDoubleList(L1, 15);
+    ListTraverse_DL(L1);
+
+    srand(time(NULL));
+    for (int i = 0; i <50; ++i){
+        int elem = rand() % 10+1;
+        printf("find %d \n", elem);
+        Locate(L1,elem);
+    }
+
+//    Locate(L1,5);
+
+    ListTraverse_DL(L1);
+
+
+
 
     //    DLinkList DL1,DL2;
     //    createDoubleList(DL1, 5);
