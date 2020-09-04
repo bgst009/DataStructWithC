@@ -195,4 +195,10 @@ LNode *findLoopStart(LinkList list);
 LNode *findNode(LinkList list, ElemType elem);
 LNode *findLastNode(LinkList list);
 
+/**
+ * 把链表对折后相间融合
+ * @param list
+ */
+void changeList(LinkList list);
+
 #endif//DATASTRUCTWITHC_LINKLIST_H

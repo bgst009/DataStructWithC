@@ -25,7 +25,7 @@ void createListHead(LinkList *L, int n) {
         (*L)->next = p;
     }
 
-    sleep(2);
+    //    sleep(2);
 }
 
 void createDoubleList(DLinkList L, int n) {
@@ -214,8 +214,8 @@ bool ListTraverse_L(LinkList *L) {
     //计数器
     int j = 0;
 
-    while (p) {
-        printf(" %d ", p->data);
+    while (p->next) {
+        printf("%d->", p->data);
         p = p->next;
 
         //循环单链表
@@ -230,6 +230,7 @@ bool ListTraverse_L(LinkList *L) {
         }
     }
 
+    printf("%d", p->data);
     printf("\n");
     return true;
 }
@@ -315,8 +316,8 @@ LinkList ReverseList_Recursive_L(LinkList L, LinkList list) {
 LinkList ReverseList(LinkList L) {
     LNode *p = L->next;
     LinkList list = (LinkList) malloc(sizeof(LNode));
-    p=ReverseList_Recursive_L(p, list);
-    p->next= NULL;
+    p = ReverseList_Recursive_L(p, list);
+    p->next = NULL;
     return list;
 }
 
@@ -763,4 +764,47 @@ LNode *findLastNode(LinkList list) {
     }
 
     return p;
+}
+void changeList(LinkList list) {
+    LNode *mid, *rear;
+    rear = list->next;
+    mid = list->next;
+
+    //        while (rear->next != NULL) {//find mid node
+    //            mid = mid->next;
+    //            rear = rear->next;
+    //            if (rear->next != NULL) {
+    //                rear = rear->next;
+    //            }
+    //        }
+
+    int length = listLength(list);
+    length /= 2;
+    while (length > 0) {
+        mid = mid->next;
+        length--;
+    }
+
+    //    printf("\n mid : %d\n", mid->data);
+
+    rear = mid->next;
+    mid->next = NULL;
+
+    LinkList list2 = (LinkList) malloc(sizeof(LNode));
+    list2->next = rear;
+
+    rear = ReverseList(list2);
+    //    ListTraverse_L(&rear);
+
+    LNode *p1, *p2, *p;
+    p1 = list->next;
+    p2 = rear->next;
+
+    while (p2) {
+        p = p2->next;//temporary storage
+        p2->next = p1->next;
+        p1->next = p2;
+        p1 = p2->next;
+        p2 = p;
+    }
 }

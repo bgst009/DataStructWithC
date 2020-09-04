@@ -15,11 +15,15 @@ int main() {
 void test03() {
 
     LinkList list;
-    int size = 10;
+    int size = 30;
     createListHead(&list, size);
     ListTraverse_L(&list);
-    list = ReverseList(list);
+    printf("\n list length = %d\n", listLength(list));
+
+    //    list = ReverseList(list);
+    changeList(list);
     ListTraverse_L(&list);
+    printf("\n list length = %d\n", listLength(list));
 
 
     //    LinkList list;
