@@ -177,4 +177,21 @@ int listLength(LinkList list);
  * @param n 值域上边界
  */
 void deleteRepeat(LinkList list, int n);
+
+/**
+ * 找单链表的环入口
+ * @param list
+ * @return
+ */
+LNode *findLoopStart(LinkList list);
+
+/**
+ * 按值查找链表中的元素并返回节点
+ * @param list
+ * @param elem
+ * @return
+ */
+LNode *findNode(LinkList list, ElemType elem);
+LNode *findLastNode(LinkList list);
+
 #endif//DATASTRUCTWITHC_LINKLIST_H

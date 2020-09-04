@@ -17,8 +17,22 @@ void test03() {
     int size = 50;
     createListHead(&list, size);
     ListTraverse_L(&list);
-    deleteRepeat(list, 15);
-    ListTraverse_L(&list);
+
+    //构造环链表
+    LNode *p1, *p2;
+    ElemType elem = 1;
+    p1 = findNode(list, elem);
+    if (p1) printf("\n %d \n", p1->data);
+    while (p1 == NULL && elem <= size) {
+        p1 = findNode(list, elem);
+    }
+    p2 = findLastNode(list);
+    p2->next = p1;
+    //    ListTraverse_L(&list);
+
+    //测试
+    p2 = findLoopStart(list);
+    printf("\n loop start node val is %d \n", p2->data);
 }
 
 void test02() {

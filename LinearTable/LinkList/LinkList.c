@@ -18,7 +18,7 @@ void createListHead(LinkList *L, int n) {
     //初始化随机树种子
     srand(time(0));
     for (int j = 0; j < n; ++j) {
-        negtive = -negtive;
+        //        negtive = -negtive;
         p = (LNode *) malloc(sizeof(LNode));
         p->data = negtive * rand() % 15 + 1;//0-100;
         p->next = (*L)->next;
@@ -687,4 +687,61 @@ void deleteRepeat(LinkList list, int n) {
             pre = pre->next;
         }
     }
+}
+LNode *findLoopStart(LinkList list) {
+
+    LNode *fast, *slow;
+    fast = list->next;
+    slow = list->next;
+
+    //快慢指针移动
+    while (slow != NULL && fast->next != NULL) {
+        slow = slow->next;      //走一步
+        fast = fast->next->next;//走两步
+        if (fast == slow) break;//相遇
+    }
+
+    //无环
+    if (slow == NULL || fast->next == NULL) {
+        return NULL;
+    }
+
+    LNode *p1 = list->next, *p2 = slow;//p1 首元节点，p2 相遇节点
+
+    while (p1 != p2) {
+        p1 = p1->next;
+        p2 = p2->next;
+    }
+
+    return p1;
+}
+LNode *findNode(LinkList list, ElemType elem) {
+    if (list->next == NULL) {
+        perror("list empty");
+        return NULL;
+    }
+
+    LNode *p = list;
+    while (p->next) {
+        if (p->next->data == elem)
+            break;
+        else
+            p = p->next;
+    }
+    return p->next;
+}
+LNode *findLastNode(LinkList list) {
+
+    if (list->next == NULL) {
+        perror("list empty");
+        return NULL;
+    }
+
+    LNode *p = list;
+
+    while (p->next) {
+        p = p->next;
+    }
+
+    return p;
 }
