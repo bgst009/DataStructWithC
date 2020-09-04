@@ -301,6 +301,25 @@ LinkList ReverseList_L(LinkList L) {
     L->next = p;
     return L;
 }
+LinkList ReverseList_Recursive_L(LinkList L, LinkList list) {
+    if (L == NULL) {//递归终止
+        return list;
+    }
+
+    LNode *p = L;
+    L = ReverseList_Recursive_L(L->next, list);
+    L->next = p;
+
+    return p;
+}
+LinkList ReverseList(LinkList L) {
+    LNode *p = L->next;
+    LinkList list = (LinkList) malloc(sizeof(LNode));
+    p=ReverseList_Recursive_L(p, list);
+    p->next= NULL;
+    return list;
+}
+
 LinkList ReverseList_L_2(LinkList L) {
     LNode *p, *r;
     p = L->next;
@@ -530,6 +549,7 @@ void connectDLinkList(DLinkList L1, DLinkList L2) {
     L1->Prior->Next = L2->Next; //L1 的尾节点的后继为L2 的首元节点
     L1->Prior = L2->Prior;      //把L1 的尾节点指向L2 的尾节点
 }
+
 void connectLindList(LinkList L1, LinkList L2) {
     LNode *p;
     p = L1->next;
@@ -538,7 +558,6 @@ void connectLindList(LinkList L1, LinkList L2) {
     }
     p->next = L2->next;
 }
-
 void deleteSmall(LinkList L) {
     LNode *p, *pre;
     LNode *min, *preMin;

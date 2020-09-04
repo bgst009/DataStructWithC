@@ -64,6 +64,7 @@ bool IsEmpty(LinkList L);
  * @return LinkList
  */
 LinkList ReverseList_L(LinkList L);
+LinkList ReverseList(LinkList L);
 /**
  * 头插法翻转链表
  * @param L 链表
