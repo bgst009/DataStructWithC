@@ -5,10 +5,19 @@
 
 void test01();
 void test02();
+void test03();
 
 int main() {
-    test02();
+    test03();
     return 0;
+}
+
+void test03() {
+    LinkList list;
+    int size = 10;
+    createListHead(&list, size);
+    ListTraverse_L(&list);
+    findLastK(list,5);
 }
 
 void test02() {
@@ -18,17 +27,15 @@ void test02() {
     ListTraverse_DL(L1);
 
     srand(time(NULL));
-    for (int i = 0; i <50; ++i){
-        int elem = rand() % 10+1;
+    for (int i = 0; i < 50; ++i) {
+        int elem = rand() % 10 + 1;
         printf("find %d \n", elem);
-        Locate(L1,elem);
+        Locate(L1, elem);
     }
 
-//    Locate(L1,5);
+    //    Locate(L1,5);
 
     ListTraverse_DL(L1);
-
-
 
 
     //    DLinkList DL1,DL2;

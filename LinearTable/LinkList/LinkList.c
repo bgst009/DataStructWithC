@@ -564,7 +564,7 @@ DNode *Locate(DLinkList L, ElemType elem) {
 
     if (!p) {
         printf("\n fail to find \n");
-//        exit(0);
+        //        exit(0);
         return L;
     } else {
         p->freq++;
@@ -590,4 +590,29 @@ DNode *Locate(DLinkList L, ElemType elem) {
     }
 
     return p;
+}
+bool findLastK(LinkList L, int k) {
+    //带头结点
+    if (L->next == NULL) {
+        perror("findLastK failed L is empty");
+        return false;
+    }
+
+    LNode *p, *q;
+    int count = 0;
+
+    p = q = L->next;
+    while (p != NULL) {
+        if (count < k) count++;
+        else
+            q = q->next;
+        p = p->next;
+    }
+    if (count < k) {
+        printf("\n Not Find \n");
+        return false;
+    }
+
+    printf("\n Find last %dth element is: %d \n", k, q->data);
+    return true;
 }

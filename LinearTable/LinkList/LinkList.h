@@ -146,4 +146,12 @@ void deleteSmall(LinkList L1);
 DNode *Locate(DLinkList L, ElemType elem);
 
 
+/**
+ * 在单链表中找到倒数 k个元素同时打印出来
+ * @param L 链表
+ * @param K 倒数 k 个元素
+ * @return if find return true else return false;
+ */
+bool findLastK(LinkList L, int K);
+
 #endif//DATASTRUCTWITHC_LINKLIST_H
