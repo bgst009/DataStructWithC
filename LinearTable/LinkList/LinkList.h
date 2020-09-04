@@ -156,6 +156,25 @@ DNode *Locate(DLinkList L, ElemType elem);
  */
 bool findLastK(LinkList L, int K);
 
+/**
+ * 寻找两个单链表的共同后缀
+ * @param L1 单链表
+ * @param L2 单链表
+ * @return 共同后缀节点
+ */
 LNode *findCoNode(LinkList L1, LinkList L2);
+
+/**
+ * 单链表长度
+ * @param list 单链表
+ * @return 长度
+ */
 int listLength(LinkList list);
+
+/**
+ * 删除单链表中绝对值重复的节点(值域为0...n)，只保留第一次出现的节点
+ * @param list 单链表
+ * @param n 值域上边界
+ */
+void deleteRepeat(LinkList list, int n);
 #endif//DATASTRUCTWITHC_LINKLIST_H

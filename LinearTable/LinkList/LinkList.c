@@ -11,14 +11,16 @@
 void createListHead(LinkList *L, int n) {
     LNode *p;
     int i;
+    int negtive = 1;
     //带头结点的单链表 L (L 就是头节点)
     *L = (LinkList) malloc(sizeof(LNode));
     (*L)->next = NULL;
     //初始化随机树种子
     srand(time(0));
     for (int j = 0; j < n; ++j) {
+        negtive = -negtive;
         p = (LNode *) malloc(sizeof(LNode));
-        p->data = rand() % 15 + 1;//0-100;
+        p->data = negtive * rand() % 15 + 1;//0-100;
         p->next = (*L)->next;
         (*L)->next = p;
     }
@@ -660,4 +662,29 @@ int listLength(LinkList list) {
         ++res;
     }
     return res;
+}
+void deleteRepeat(LinkList list, int n) {
+    if (list == NULL) {
+        perror("list is empty");
+        return;
+    }
+
+    int val[n + 1];
+    for (int i = 0; i < n + 1; i++) {
+        val[i] = 0;
+    }
+
+    LNode *pre;
+    pre = list;
+
+    while (pre->next != NULL) {
+        if (val[abs(pre->next->data)] != 0) {
+            LNode *p = pre->next;
+            pre->next = p->next;
+            free(p);
+        } else {//val[pre->next->data] == 0,
+            val[abs(pre->next->data)]++;
+            pre = pre->next;
+        }
+    }
 }
