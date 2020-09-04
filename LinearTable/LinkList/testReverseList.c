@@ -13,11 +13,25 @@ int main() {
 }
 
 void test03() {
-    LinkList list;
+    LinkList list1, list2, list3;
     int size = 10;
-    createListHead(&list, size);
-    ListTraverse_L(&list);
-    findLastK(list,5);
+    createListHead(&list1, size + 1);
+    createListHead(&list2, size - 1);
+    createListHead(&list3, size / 2);
+    //    ListTraverse_L(&list1);
+    //    ListTraverse_L(&list2);
+    ListTraverse_L(&list3);
+
+    connectLindList(list1, list3);
+    connectLindList(list2, list3);
+    ListTraverse_L(&list1);
+    ListTraverse_L(&list2);
+
+    LNode* node;
+    LinkList L;
+    node = findCoNode(list1, list2);
+    L->next=node;
+    ListTraverse_L(&L);
 }
 
 void test02() {

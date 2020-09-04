@@ -6,6 +6,7 @@
 #define DATASTRUCTWITHC_LINKLIST_H
 
 typedef int ElemType;
+//typedef char ElemType;
 
 #include <stdbool.h>
 #include <stdio.h>
@@ -130,6 +131,7 @@ bool symmetry(DLinkList L);
  * @param L2 循环双链表
  */
 void connectDLinkList(DLinkList L1, DLinkList L2);
+void connectLindList(LinkList L1, LinkList L2);
 
 /**
  * 循环删除单链表中的最小节点，直至链表为空
@@ -154,4 +156,6 @@ DNode *Locate(DLinkList L, ElemType elem);
  */
 bool findLastK(LinkList L, int K);
 
+LNode *findCoNode(LinkList L1, LinkList L2);
+int listLength(LinkList list);
 #endif//DATASTRUCTWITHC_LINKLIST_H

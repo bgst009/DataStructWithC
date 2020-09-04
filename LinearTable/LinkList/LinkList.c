@@ -4,6 +4,8 @@
 
 #include "LinkList.h"
 
+#include <unistd.h>
+
 #include "../../Stack/LinkStack/LinkStack.h"
 
 void createListHead(LinkList *L, int n) {
@@ -20,6 +22,8 @@ void createListHead(LinkList *L, int n) {
         p->next = (*L)->next;
         (*L)->next = p;
     }
+
+    sleep(2);
 }
 
 void createDoubleList(DLinkList L, int n) {
@@ -524,6 +528,15 @@ void connectDLinkList(DLinkList L1, DLinkList L2) {
     L1->Prior->Next = L2->Next; //L1 的尾节点的后继为L2 的首元节点
     L1->Prior = L2->Prior;      //把L1 的尾节点指向L2 的尾节点
 }
+void connectLindList(LinkList L1, LinkList L2) {
+    LNode *p;
+    p = L1->next;
+    while (p->next) {
+        p = p->next;
+    }
+    p->next = L2->next;
+}
+
 void deleteSmall(LinkList L) {
     LNode *p, *pre;
     LNode *min, *preMin;
@@ -548,7 +561,6 @@ void deleteSmall(LinkList L) {
     }
     free(L);//delete LinkList
 }
-
 DNode *Locate(DLinkList L, ElemType elem) {
     if (L->Next == NULL) {
         printf("\n DLinkList is empty\n");
@@ -615,4 +627,37 @@ bool findLastK(LinkList L, int k) {
 
     printf("\n Find last %dth element is: %d \n", k, q->data);
     return true;
+}
+LNode *findCoNode(LinkList L1, LinkList L2) {
+
+    if (L1->next == NULL || L2->next == NULL) {
+        perror("L1 or L2 is Empty");
+        return NULL;
+    }
+
+    int length1 = listLength(L1);
+    int length2 = listLength(L2);
+
+    LNode *p1, *p2;
+    for (p1 = L1; length1 > length2; --length1) {
+        p1 = p1->next;
+    }
+    for (p2 = L2; length2 > length1; --length2) {
+        p2 = p2->next;
+    }
+
+    while (p1->next != NULL && p1->next != p2->next) {
+        p1 = p1->next;
+        p2 = p2->next;
+    }
+    return p1->next;
+}
+int listLength(LinkList list) {
+    int res = 0;
+    LNode *p = list->next;
+    while (p) {
+        p = p->next;
+        ++res;
+    }
+    return res;
 }
