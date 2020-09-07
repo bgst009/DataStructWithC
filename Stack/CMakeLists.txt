@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.17)
 project(Stack)
 set(CMAKE_C_STANDARD 11)
-set(SRC_DIR ./test.c ./stack.c ./stack.h ./list/LinkList.c ./list/LinkList.h ./LinkStack/LinkStack.h ./LinkStack/LinkStack.c )
+#set(SRC_DIR ./test.c ./stack.c ./stack.h ./list/LinkList.c ./list/LinkList.h ./LinkStack/LinkStack.h ./LinkStack/LinkStack.c DualStack.c DualStack.h)
+set(SRC_DIR ./DualStack.h ./DualStack.c)
 add_executable(stack ${SRC_DIR})
