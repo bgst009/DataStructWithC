@@ -5,7 +5,7 @@
 #ifndef DATASTRUCTWITHC_LINKSTACK_H
 #define DATASTRUCTWITHC_LINKSTACK_H
 
-#include "../../header.h"
+#include "../../../header.h"
 
 typedef int SElemType;
 
