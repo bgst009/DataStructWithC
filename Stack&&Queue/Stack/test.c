@@ -2,8 +2,8 @@
 // Created by 14991 on 2020/8/25.
 //
 
+#include "Sq_Stack/stack.h"
 #include "list/LinkList.h"
-#include "stack.h"
 void test01();
 void test02();
 int main() {

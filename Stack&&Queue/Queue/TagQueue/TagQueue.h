@@ -9,12 +9,12 @@
 typedef struct tagQueue TQ;
 typedef int TQElement;
 
-TQ initTQ(int size);
+TQ* initTQ(int size);
 bool enQueueTQueue(TQ* queue, TQElement element);
 TQElement deQueueTQueue(TQ* queue);
-void traverseTQueue(TQ queue);
-bool isEmptyTQueue(TQ queue);
-bool isFullTQueue(TQ queue);
+void traverseTQueue(TQ* queue);
+bool isEmptyTQueue(TQ* queue);
+bool isFullTQueue(TQ* queue);
 
 
 #endif//SQ_TAGQUEUE_H

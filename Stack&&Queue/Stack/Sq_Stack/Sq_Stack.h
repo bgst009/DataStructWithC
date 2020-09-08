@@ -9,6 +9,10 @@
 
 #include "../../../header.h"
 
+/**
+ * 固定大小的顺序栈
+ */
+
 typedef int SElemType;
 typedef struct {
     SElemType data[MAXSIZE];
