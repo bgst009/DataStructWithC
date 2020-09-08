@@ -25,8 +25,11 @@ bool destroy(Stack* stack) {
 bool isEmpty(Stack* stack) {
     return stack->top == -1 ? true : false;
 }
+bool isFull(Stack* stack) {
+    return stack->top >= stack->size ? true : false;
+}
 bool push(Stack* stack, StackElement element) {
-    if (stack->top >= stack->size)
+    if (isFull(stack))
         return false;
     stack->data[++stack->top] = element;
     return true;
@@ -48,17 +51,17 @@ bool symmetryWithStack(LinkList L, Stack* stack) {
     slow = fast = L->next;
 
     while (fast != NULL && fast->next != NULL) {
-//        printf("\n slow: %d ", slow->data);
-//        printf(" fast: %d \n", fast->data);
+        //        printf("\n slow: %d ", slow->data);
+        //        printf(" fast: %d \n", fast->data);
         push(stack, slow->data);
         cur = slow;
         slow = slow->next;
         fast = fast->next->next;
     }
-//    printf("\n slow: %d \n", slow->data);
-//    printf("\n slow->next: %d \n", slow->next->data);
-//    ListTraverse_L(&L);
-//    ListTraverse_L(&cur);
+    //    printf("\n slow: %d \n", slow->data);
+    //    printf("\n slow->next: %d \n", slow->next->data);
+    //    ListTraverse_L(&L);
+    //    ListTraverse_L(&cur);
     if (fast) {//odd
         slow = slow->next;
     }

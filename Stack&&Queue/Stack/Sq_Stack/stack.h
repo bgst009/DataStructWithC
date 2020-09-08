@@ -27,6 +27,7 @@ bool push(Stack* stack, StackElement element);
 bool pop(Stack* stack);
 StackElement top(Stack* stack);
 bool isEmpty(Stack* stack);
+bool isFull(Stack* stack);
 bool symmetryWithStack(LinkList L, Stack* stack);
 void traverseStack(Stack* stack);
 

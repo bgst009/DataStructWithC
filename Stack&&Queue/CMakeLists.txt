@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.17)
 project(SQ)
 set(CMAKE_C_STANDARD 11)
-set(SRC_DIR Queue/TagQueue/TagQueue.c Queue/TagQueue/TagQueue.h Algs/QueueAlgorithms.c Algs/QueueAlgorithms.h ./Stack/Sq_Stack/stack.c ./Stack/Sq_Stack/stack.h)
+set(SRC_DIR   ./Stack/Sq_Stack/stack.c ./Stack/Sq_Stack/stack.h Queue/QueueWithStack/QueueWithStack.c Queue/QueueWithStack/QueueWithStack.h)
 add_executable(SQ ${SRC_DIR})
