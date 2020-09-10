@@ -10,3 +10,5 @@
 /Stack&&Queue/Stack/cmake-build-debug
 /Stack&&Queue/cmake-build-debug
 /Array/cmake-build-debug
+.idea
+.clang-format
