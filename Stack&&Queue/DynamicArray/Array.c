@@ -4,13 +4,14 @@
 
 #include "Array.h"
 
+#include <assert.h>
 #include <malloc.h>
 #include <memory.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
-struct MyArray {
+struct Array {
     ArrayElementType* data;
     //数组容量
     int capacity;
@@ -32,6 +33,12 @@ void cstl_array_getElement(Array array, int index, ArrayElementType* element) {
         return;
     *element = array.data[index];
 }
+ArrayElementType cstl_array_getLast(Array array) {
+    ArrayElementType element;
+    cstl_array_getElement(array, array.length - 1, &element);
+    return element;
+}
+
 
 void cstl_array_setElement(Array* array, int index, ArrayElementType element) {
     if (index > array->length)
@@ -44,6 +51,8 @@ void cstl_array_addElement(Array* array, int index, ArrayElementType element) {
         printf("\n Add failed. Require index >= 0 and index <= size. \n");
         return;
     }
+
+    //    assert(!(index < 0 && index > array->length));
 
     //    printf("%d ", element);
 
@@ -109,7 +118,11 @@ int cstl_array_removeElementWithIndex(Array* array, int index) {
     if (index < 0 && index >= array->length) {
         printf("\n Remove failed. Index is illegal. \n");
         return -1;
+        //            assert()
     }
+
+    //    assert(!(index < 0 && index >= array->length));
+
     int ret = array->data[index];
     for (int i = index + 1; i < array->length; i++) {
         array->data[i - 1] = array->data[i];
@@ -117,40 +130,15 @@ int cstl_array_removeElementWithIndex(Array* array, int index) {
     array->length--;
     return ret;
 }
-int cstl_array_removeFirst(Array* array, int index) {
-    cstl_array_removeElementWithIndex(array, 0);
+int cstl_array_removeFirst(Array* array) {
+    return cstl_array_removeElementWithIndex(array, 0);
 }
-int cstl_array_removeLast(Array* array, int index) {
-    cstl_array_removeElementWithIndex(array, array->length - 1);
+int cstl_array_removeLast(Array* array) {
+    return cstl_array_removeElementWithIndex(array, array->length - 1);
 }
 void cstl_array_removeElement(Array* array, ArrayElementType element) {
     int index = cstl_array_findElement(*array, element);
     if (index != -1) {
         cstl_array_removeElementWithIndex(array, index);
     }
-}
-
-int main() {
-
-    int size = 5;
-    Array array = cstl_array_initArray(size);
-
-    //    srand(time(NULL));
-    for (int i = 0; i < size + 5; ++i) {
-        cstl_array_addLast(&array, i);
-    }
-    printArray(array);
-
-    cstl_array_addFirst(&array, 10);
-    printArray(array);
-    cstl_array_addLast(&array, 11);
-    printArray(array);
-
-    cstl_array_removeElementWithIndex(&array, 2);
-    printArray(array);
-    cstl_array_removeElement(&array, 4);
-    printArray(array);
-
-
-    return 0;
 }

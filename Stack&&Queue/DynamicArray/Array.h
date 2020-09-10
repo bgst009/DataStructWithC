@@ -7,7 +7,7 @@
 #include <stdbool.h>
 #define INCREMENT 20
 
-typedef struct MyArray Array;
+typedef struct Array Array;
 typedef int ArrayElementType;
 
 
@@ -24,6 +24,7 @@ Array cstl_array_initArray(int capacity);
  * @param element 元素指针
  */
 void cstl_array_getElement(Array array, int index, ArrayElementType* element);
+ArrayElementType cstl_array_getLast(Array array);
 /**
  * 修改index位置的元素
  * @param array pointer to array
@@ -95,14 +96,14 @@ int cstl_array_removeElementWithIndex(Array* array, int index);
  * @param index 索引
  * @return 被删除元素
  */
-int cstl_array_removeFirst(Array* array, int index);
+int cstl_array_removeFirst(Array* array);
 /**
  * 从数组中删除最后一个元素, 返回删除的元素
  * @param array 数组指针
  * @param index 索引
  * @return 被删除元素
  */
-int cstl_array_removeLast(Array* array, int index);
+int cstl_array_removeLast(Array* array);
 /**
  * 从数组中删除元素element
  * @param array 数组指针
