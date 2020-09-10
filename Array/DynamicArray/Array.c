@@ -17,7 +17,7 @@ struct MyArray {
     //元素个数
     int length;
 };
-Array initArray(int capacity) {
+Array cstl_array_initArray(int capacity) {
     Array array;
     //分配内存
     array.data = (ElementType*) malloc(sizeof(ElementType) * capacity);
@@ -27,18 +27,18 @@ Array initArray(int capacity) {
     array.length = 0;
     return array;
 }
-void getElement(Array array, int index, ElementType* element) {
+void cstl_array_getElement(Array array, int index, ElementType* element) {
     if (index > array.length)
         return;
     *element = array.data[index];
 }
 
-void setElement(Array* array, int index, ElementType element) {
+void cstl_array_setElement(Array* array, int index, ElementType element) {
     if (index > array->length)
         return;
     array->data[index] = element;
 }
-void addElement(Array* array, int index, ElementType element) {
+void cstl_array_addElement(Array* array, int index, ElementType element) {
     //参数不合法
     if (index < 0 && index > array->length) {
         printf("\n Add failed. Require index >= 0 and index <= size. \n");
@@ -64,11 +64,11 @@ void addElement(Array* array, int index, ElementType element) {
         array->length++;
     }
 }
-void addLast(Array* array, ElementType element) {
-    addElement(array, array->length, element);
+void cstl_array_addLast(Array* array, ElementType element) {
+    cstl_array_addElement(array, array->length, element);
 }
-void addFirst(Array* array, ElementType element) {
-    addElement(array, 0, element);
+void cstl_array_addFirst(Array* array, ElementType element) {
+    cstl_array_addElement(array, 0, element);
 }
 void printArray(Array array) {
     int i;
@@ -79,23 +79,23 @@ void printArray(Array array) {
     printf("%d]", array.data[i]);
     printf("\n");
 }
-int getCapacity(Array array) {
+int cstl_array_getCapacity(Array array) {
     return array.capacity;
 }
-int getLength(Array array) {
+int cstl_array_getLength(Array array) {
     return array.length;
 }
-bool isEmpty(Array array) {
+bool cstl_array_isEmpty(Array array) {
     return array.length == 0 ? true : false;
 }
-bool containsElement(Array array, ElementType element) {
+bool cstl_array_containsElement(Array array, ElementType element) {
     for (int i = 0; i < array.length; ++i) {
         if (array.data[i] == element)
             return true;
     }
     return false;
 }
-int findElement(Array array, ElementType element) {
+int cstl_array_findElement(Array array, ElementType element) {
     for (int i = 0; i < array.length; ++i) {
         if (array.data[i] == element) {
             //            printf("%d", i);
@@ -104,7 +104,7 @@ int findElement(Array array, ElementType element) {
     }
     return -1;
 }
-int removeElementWithIndex(Array* array, int index) {
+int cstl_array_removeElementWithIndex(Array* array, int index) {
     //参数不合法
     if (index < 0 && index >= array->length) {
         printf("\n Remove failed. Index is illegal. \n");
@@ -117,38 +117,38 @@ int removeElementWithIndex(Array* array, int index) {
     array->length--;
     return ret;
 }
-int removeFirst(Array* array, int index) {
-    removeElementWithIndex(array, 0);
+int cstl_array_removeFirst(Array* array, int index) {
+    cstl_array_removeElementWithIndex(array, 0);
 }
-int removeLast(Array* array, int index) {
-    removeElementWithIndex(array, array->length - 1);
+int cstl_array_removeLast(Array* array, int index) {
+    cstl_array_removeElementWithIndex(array, array->length - 1);
 }
-void removeElement(Array* array, ElementType element) {
-    int index = findElement(*array, element);
+void cstl_array_removeElement(Array* array, ElementType element) {
+    int index = cstl_array_findElement(*array, element);
     if (index != -1) {
-        removeElementWithIndex(array, index);
+        cstl_array_removeElementWithIndex(array, index);
     }
 }
 
 int main() {
 
     int size = 5;
-    Array array = initArray(size);
+    Array array = cstl_array_initArray(size);
 
     //    srand(time(NULL));
     for (int i = 0; i < size + 5; ++i) {
-        addLast(&array, i);
+        cstl_array_addLast(&array, i);
     }
     printArray(array);
 
-    addFirst(&array, 10);
+    cstl_array_addFirst(&array, 10);
     printArray(array);
-    addLast(&array, 11);
+    cstl_array_addLast(&array, 11);
     printArray(array);
 
-    removeElementWithIndex(&array, 2);
+    cstl_array_removeElementWithIndex(&array, 2);
     printArray(array);
-    removeElement(&array, 4);
+    cstl_array_removeElement(&array, 4);
     printArray(array);
 
 
