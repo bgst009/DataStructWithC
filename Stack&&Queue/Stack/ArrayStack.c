@@ -6,6 +6,7 @@
 
 #include <assert.h>
 #include <stdio.h>
+#include <unistd.h>
 struct Array {
     ArrayElementType* data;
     //数组容量
@@ -30,9 +31,6 @@ void cstl_stack_push(Stack* stack, StackElementType element) {
     cstl_array_addLast(stack, element);
 }
 StackElementType cstl_stack_pop(Stack* stack) {
-    if (cstl_stack_isEmpty(*stack)) {
-        printf("\n stack is empty ");
-    }
     return cstl_array_removeLast(stack);
 }
 StackElementType cstl_stack_top(Stack stack) {
@@ -47,20 +45,21 @@ void cstl_stack_print(Stack stack) {
     printf("\n");
 }
 
-int main() {
-    Stack stack = cstl_stack_initStack(5);
-    printf("%d\n", cstl_stack_getLength(stack));
-    printf("%d\n", cstl_stack_capacity(stack));
-    for (int i = 0; i < 5; i++) {
-        cstl_stack_push(&stack, i);
-    }
-    cstl_stack_print(stack);
-    printf("%d\n", cstl_stack_getLength(stack));
-    printf("%d\n", cstl_stack_capacity(stack));
-
-    printf("\n");
-    for (int i = 0; i < 10; i++) {
-        printf("%d ", cstl_stack_pop(&stack));
-    }
-    return 0;
-}
+//int main() {
+//    Stack stack = cstl_stack_initStack(5);
+//    printf("%d\n", cstl_stack_getLength(stack));
+//    printf("%d\n", cstl_stack_capacity(stack));
+//    for (int i = 0; i < 5; i++) {
+//        cstl_stack_push(&stack, i);
+//    }
+//    cstl_stack_print(stack);
+//    printf("%d\n", cstl_stack_getLength(stack));
+//    printf("%d\n", cstl_stack_capacity(stack));
+//
+//    printf("\n");
+//    for (int i = 0; i < 6; i++) {
+//        printf("%d ", cstl_stack_pop(&stack));
+//        sleep(2);
+//    }
+//    return 0;
+//}

@@ -40,7 +40,7 @@ void cstl_array_setElement(Array* array, int index, ArrayElementType element) {
 }
 void cstl_array_addElement(Array* array, int index, ArrayElementType element) {
     //参数不合法
-    if (index < 0 && index > array->length) {
+    if (index < 0 || index > array->length) {
         printf("\n Add failed. Require index >= 0 and index <= size. \n");
         return;
     }

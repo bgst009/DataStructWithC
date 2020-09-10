@@ -95,7 +95,7 @@ int cstl_array_getLength(Array array) {
     return array.length;
 }
 bool cstl_array_isEmpty(Array array) {
-    return array.length == 0 ? true : false;
+    return array.length <= 0 ? true : false;
 }
 bool cstl_array_containsElement(Array array, ArrayElementType element) {
     for (int i = 0; i < array.length; ++i) {
@@ -115,13 +115,12 @@ int cstl_array_findElement(Array array, ArrayElementType element) {
 }
 int cstl_array_removeElementWithIndex(Array* array, int index) {
     //参数不合法
-    if (index < 0 && index >= array->length) {
-        printf("\n Remove failed. Index is illegal. \n");
-        return -1;
-        //            assert()
-    }
+    //    if (index < 0 || index >= array->length) {
+    //        printf("\n Remove failed. Index is illegal. \n");
+    //        return -1;
+    //    }
 
-    //    assert(!(index < 0 && index >= array->length));
+    assert(index >= 0 && index < array->length);
 
     int ret = array->data[index];
     for (int i = index + 1; i < array->length; i++) {
