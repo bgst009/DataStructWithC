@@ -32,7 +32,11 @@ void cstl_array_getElement(Array array, int index, ArrayElementType* element) {
         return;
     *element = array.data[index];
 }
-
+ArrayElementType cstl_array_getLast(Array array) {
+    ArrayElementType element;
+    cstl_array_getElement(array, array.length - 1, &element);
+    return element;
+}
 void cstl_array_setElement(Array* array, int index, ArrayElementType element) {
     if (index > array->length)
         return;
@@ -106,9 +110,10 @@ int cstl_array_findElement(Array array, ArrayElementType element) {
 }
 int cstl_array_removeElementWithIndex(Array* array, int index) {
     //参数不合法
-    if (index < 0 && index >= array->length) {
+    if (index < 0 || index >= array->length) {
         printf("\n Remove failed. Index is illegal. \n");
-        return -1;
+        //        return -1;
+        exit(0);
     }
     int ret = array->data[index];
     for (int i = index + 1; i < array->length; i++) {
@@ -117,10 +122,10 @@ int cstl_array_removeElementWithIndex(Array* array, int index) {
     array->length--;
     return ret;
 }
-int cstl_array_removeFirst(Array* array, int index) {
+int cstl_array_removeFirst(Array* array) {
     cstl_array_removeElementWithIndex(array, 0);
 }
-int cstl_array_removeLast(Array* array, int index) {
+int cstl_array_removeLast(Array* array) {
     cstl_array_removeElementWithIndex(array, array->length - 1);
 }
 void cstl_array_removeElement(Array* array, ArrayElementType element) {
@@ -130,27 +135,27 @@ void cstl_array_removeElement(Array* array, ArrayElementType element) {
     }
 }
 
-int main() {
-
-    int size = 5;
-    Array array = cstl_array_initArray(size);
-
-    //    srand(time(NULL));
-    for (int i = 0; i < size + 5; ++i) {
-        cstl_array_addLast(&array, i);
-    }
-    printArray(array);
-
-    cstl_array_addFirst(&array, 10);
-    printArray(array);
-    cstl_array_addLast(&array, 11);
-    printArray(array);
-
-    cstl_array_removeElementWithIndex(&array, 2);
-    printArray(array);
-    cstl_array_removeElement(&array, 4);
-    printArray(array);
-
-
-    return 0;
-}
+//int main() {
+//
+//    int size = 5;
+//    Array array = cstl_array_initArray(size);
+//
+//    //    srand(time(NULL));
+//    for (int i = 0; i < size + 5; ++i) {
+//        cstl_array_addLast(&array, i);
+//    }
+//    printArray(array);
+//
+//    cstl_array_addFirst(&array, 10);
+//    printArray(array);
+//    cstl_array_addLast(&array, 11);
+//    printArray(array);
+//
+//    cstl_array_removeElementWithIndex(&array, 2);
+//    printArray(array);
+//    cstl_array_removeElement(&array, 4);
+//    printArray(array);
+//
+//
+//    return 0;
+//}
