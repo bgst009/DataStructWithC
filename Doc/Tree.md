@@ -35,7 +35,7 @@ bool PreOrderTravers(BiTree biTree);
  * @param biTree 二叉树
  * @return 中序遍历成功 true
  */
-bool InOrderTravers(BiTree biTree);
+bool InOrderTraversR(BiTree biTree);
 
 /**
  * 初始条件：二叉树存在
@@ -107,17 +107,17 @@ bool LevelOrderTravers(BiTree biTree);
    }
    ```
 
-3. `InOrderTravers`
+3. `InOrderTraversR`
 
    ```c
-   bool InOrderTravers(BiTree biTree) {
+   bool InOrderTraversR(BiTree biTree) {
        if (BiTreeEmpty(biTree)) {
            return false;
        }
    
-       InOrderTravers(biTree->lchild);
+       InOrderTraversR(biTree->lchild);
        Visit(biTree);
-       InOrderTravers(biTree->rchild);
+       InOrderTraversR(biTree->rchild);
    
        return true;
    }

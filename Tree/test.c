@@ -28,7 +28,7 @@ void testBT() {
     printf("\n先序遍历\n");
     PreOrderTravers(Tree);
     printf("\n中序遍历\n");
-    InOrderTravers(Tree);
+    InOrderTraversR(Tree);
     printf("\n后序遍历\n");
     PostOrderTravers(Tree);
     printf("\n层序序遍历\n");

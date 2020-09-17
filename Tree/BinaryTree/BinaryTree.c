@@ -219,14 +219,14 @@ bool PreOrderTravers(BiTree biTree) {
     return true;
 }
 
-bool InOrderTravers(BiTree biTree) {
+bool InOrderTraversR(BiTree biTree) {
     if (BiTreeEmpty(biTree)) {
         return false;
     }
 
-    InOrderTravers(biTree->lchild);
+    InOrderTraversR(biTree->lchild);
     Visit(biTree);
-    InOrderTravers(biTree->rchild);
+    InOrderTraversR(biTree->rchild);
 
     return true;
 }

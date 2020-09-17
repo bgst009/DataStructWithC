@@ -9,34 +9,34 @@
 
 /**
  * 构造空二叉树
- * @param biTree 二叉树
+ * @param biTree 二叉树指针
  * @return 成功构造空二叉树 true
  */
 bool InitBiTree(BiTree *biTree);
 /**
  * 初始条件：二叉树存在
- * @param biTree 二叉树
+ * @param biTree 二叉树指针
  * @return 成功销毁二叉树 true
  */
 bool DestroyBiTree(BiTree *biTree);
 
 /**
  * 先序构造二叉树，空格字符表示空树
- * @param biTree 二叉树
+ * @param biTree 二叉树指针
  * @return 成功构造二叉树 true
  */
 bool CreateBiTree(BiTree *biTree);
 
 /**
  * 初始条件：二叉树存在
- * @param biTree 二叉树
+ * @param biTree 二叉树指针
  * @return 清空二叉树 true 否则 false
  */
 bool ClearBiTree(BiTree *biTree);
 
 /**
  * 初始条件：二叉树存在
- * @param biTree
+ * @param biTree 二叉树
  * @return 空树返回 true 否则返回 false
  */
 bool BiTreeEmpty(BiTree biTree);
@@ -154,8 +154,8 @@ bool PreOrderTravers(BiTree biTree);
  * @param biTree 二叉树
  * @return 中序遍历成功 true
  */
+bool InOrderTraversR(BiTree biTree);
 bool InOrderTravers(BiTree biTree);
-
 /**
  * 初始条件：二叉树存在
  *
@@ -181,4 +181,4 @@ bool LevelOrderTravers(BiTree biTree);
  */
 BiTNode *FindNode(BiTree biTree, BiTNode *elemNode);
 
-#endif //DATASTRUCTWITHC_BINARYTREE_H
+#endif//DATASTRUCTWITHC_BINARYTREE_H

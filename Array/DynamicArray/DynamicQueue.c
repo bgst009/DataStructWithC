@@ -48,4 +48,8 @@ int main() {
             cstl_queue_print(queue);
         }
     }
+    for (int i = 0; i < 15; i++) {
+        cstl_queue_dequeue(&queue);
+        cstl_queue_print(queue);
+    }
 }

@@ -1,5 +1,6 @@
 # Project exclude paths
 /cmake-build-debug/
+/cmake-build-release/
 /Sorting/InsertionSort/cmake-build-debug
 /Sorting/SelectionSort/cmake-build-debug
 /Sorting/MergeSort/cmake-build-debug
