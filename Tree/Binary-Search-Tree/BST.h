@@ -39,5 +39,9 @@ bool cstl_tree_contains(BSTP bst, TreeElementType element);
 static bool cstl_tree_containsElement(BSTP bst, BSTNodeP node, TreeElementType element);
 void cstl_tree_preOrder(BSTP bst);
 static void cstl_tree_preOrderTraversal(BSTP bst, BSTNodeP node);
+void cstl_tree_inOrder(BSTP bst);
+static void cstl_tree_inOrderTraversal(BSTP bst, BSTNodeP node);
+void cstl_tree_postOrder(BSTP bst);
+static void cstl_tree_postOrderTraversal(BSTP bst, BSTNodeP node);
 
 #endif//DATASTRUCTWITHC_BST_H

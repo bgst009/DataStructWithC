@@ -16,14 +16,14 @@ BSTP cstl_tree_InitBST() {
     return bst;
 }
 void cstl_tree_createBSTD(BSTP bst) {
-    //    srand(time(NULL));
-    TreeElementType element=10;
+    srand(time(NULL));
+    TreeElementType element = 10;
     for (int i = 0; i < 10; ++i) {
-        //        element = rand() % 100 + 1;
-        cstl_tree_add(bst, element--);
-        printf("add %dth element : %d . tree size %d\n", i, element, bst->size);
-        cstl_tree_preOrder(bst);
-        printf("\n");
+        element = rand() % 100 + 1;
+        cstl_tree_add(bst, element);
+        //        printf("add %dth element : %d . tree size %d\n", i, element, bst->size);
+        //        cstl_tree_preOrder(bst);
+        //        printf("\n");
     }
 }
 int cstl_tree_BSTSize(BSTP bst) {
@@ -69,7 +69,9 @@ bool cstl_tree_containsElement(BSTP bst, BSTNodeP node, TreeElementType element)
     }
 }
 void cstl_tree_preOrder(BSTP bst) {
+    printf("\n pre order\n");
     cstl_tree_preOrderTraversal(bst, bst->root);
+    printf("\n");
 }
 void cstl_tree_preOrderTraversal(BSTP bst, BSTNodeP node) {
     if (node == NULL)
@@ -79,9 +81,37 @@ void cstl_tree_preOrderTraversal(BSTP bst, BSTNodeP node) {
     cstl_tree_preOrderTraversal(bst, node->left);
     cstl_tree_preOrderTraversal(bst, node->right);
 }
+void cstl_tree_inOrder(BSTP bst) {
+    printf("\n in order\n");
+    cstl_tree_inOrderTraversal(bst, bst->root);
+    printf("\n");
+}
+void cstl_tree_inOrderTraversal(BSTP bst, BSTNodeP node) {
+    if (node == NULL)
+        return;
+
+    cstl_tree_inOrderTraversal(bst, node->left);
+    printf("%d ", node->element);
+    cstl_tree_inOrderTraversal(bst, node->right);
+}
+void cstl_tree_postOrder(BSTP bst) {
+    printf("\n post order\n");
+    cstl_tree_postOrderTraversal(bst, bst->root);
+    printf("\n");
+}
+void cstl_tree_postOrderTraversal(BSTP bst, BSTNodeP node) {
+    if (node == NULL)
+        return;
+
+    cstl_tree_postOrderTraversal(bst, node->left);
+    cstl_tree_postOrderTraversal(bst, node->right);
+    printf("%d ", node->element);
+}
 
 int main() {
     BSTP bst = cstl_tree_InitBST();
     cstl_tree_createBSTD(bst);
     cstl_tree_preOrder(bst);
+    cstl_tree_inOrder(bst);
+    cstl_tree_postOrder(bst);
 }
