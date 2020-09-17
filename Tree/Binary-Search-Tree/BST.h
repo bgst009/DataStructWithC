@@ -33,7 +33,7 @@ void cstl_tree_createBSTD(BSTP bst);
 int cstl_tree_BSTSize(BSTP bst);
 bool cstl_tree_isEmpty(BSTP bst);
 void cstl_tree_add(BSTP bst, TreeElementType element);
-static void cstl_tree_addElement(BSTP bst, BSTNodeP node, TreeElementType element);
+static BSTNodeP cstl_tree_addElement(BSTP bst, BSTNodeP node, TreeElementType element);
 static BSTNodeP cstl_tree_createNode(TreeElementType element);
 bool cstl_tree_contains(BSTP bst, TreeElementType element);
 static bool cstl_tree_containsElement(BSTP bst, BSTNodeP node, TreeElementType element);

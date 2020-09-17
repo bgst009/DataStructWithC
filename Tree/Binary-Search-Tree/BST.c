@@ -16,12 +16,12 @@ BSTP cstl_tree_InitBST() {
     return bst;
 }
 void cstl_tree_createBSTD(BSTP bst) {
-    srand(time(NULL));
-    TreeElementType element;
+    //    srand(time(NULL));
+    TreeElementType element=10;
     for (int i = 0; i < 10; ++i) {
-        element = rand() % 100 + 1;
-        printf("add %dth element : %d \n", i, element);
-        cstl_tree_add(bst, element);
+        //        element = rand() % 100 + 1;
+        cstl_tree_add(bst, element--);
+        printf("add %dth element : %d . tree size %d\n", i, element, bst->size);
         cstl_tree_preOrder(bst);
         printf("\n");
     }
@@ -32,35 +32,20 @@ int cstl_tree_BSTSize(BSTP bst) {
 bool cstl_tree_isEmpty(BSTP bst) {
     return bst->size == 0 ? true : false;
 }
-void cstl_tree_add(BSTP bst, TreeElementType element) {
-
-    if (bst->root == NULL) {
-        BSTNodeP node = (BSTNodeP) malloc(sizeof(BSTNode));
-        node->left = node->right = NULL;
-        node->element = element;
-        bst->root = node;
-        bst->size++;
-    } else {
-        cstl_tree_addElement(bst, bst->root, element);
-    }
+void cstl_tree_add(BST* bst, TreeElementType element) {
+    bst->root = cstl_tree_addElement(bst, bst->root, element);
 }
-void cstl_tree_addElement(BSTP bst, BSTNodeP node, TreeElementType element) {
-    if (node->element == element) {
-        return;
-    } else if (element < node->element && node->left == NULL) {
-        node->left = cstl_tree_createNode(element);
+BSTNodeP cstl_tree_addElement(BST* bst, BSTNodeP node, TreeElementType element) {
+    if (node == NULL) {
         bst->size++;
-        return;
-    } else if (element > node->element && node->right == NULL) {
-        node->right = cstl_tree_createNode(element);
-        bst->size++;
-        return;
+        return cstl_tree_createNode(element);
     }
     if (element < node->element) {
-        cstl_tree_addElement(bst, node->left, element);
-    } else {
-        cstl_tree_addElement(bst, node->right, element);
+        node->left = cstl_tree_addElement(bst, node->left, element);
+    } else if (element > node->element) {
+        node->right = cstl_tree_addElement(bst, node->right, element);
     }
+    return node;
 }
 BSTNodeP cstl_tree_createNode(TreeElementType element) {
     BSTNodeP node = (BSTNodeP) malloc(sizeof(BSTNode));
