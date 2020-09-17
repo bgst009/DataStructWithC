@@ -9,6 +9,8 @@
 #include <stdlib.h>
 #include <time.h>
 
+#include "../../Stack&&Queue/Stack/ArrayStack.h"
+
 BSTP cstl_tree_InitBST() {
     BSTP bst = (BSTP) malloc(sizeof(BST));
     bst->root = NULL;
@@ -21,9 +23,6 @@ void cstl_tree_createBSTD(BSTP bst) {
     for (int i = 0; i < 10; ++i) {
         element = rand() % 100 + 1;
         cstl_tree_add(bst, element);
-        //        printf("add %dth element : %d . tree size %d\n", i, element, bst->size);
-        //        cstl_tree_preOrder(bst);
-        //        printf("\n");
     }
 }
 int cstl_tree_BSTSize(BSTP bst) {
