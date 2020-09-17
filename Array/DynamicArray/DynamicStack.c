@@ -45,20 +45,20 @@ void cstl_stack_print(Stack stack) {
     printf("\n");
 }
 
-int main() {
-    Stack stack = cstl_stack_initStack(5);
-    printf("%d\n", cstl_stack_getLength(stack));
-    printf("%d\n", cstl_stack_capacity(stack));
-    for (int i = 0; i < 5; i++) {
-        cstl_stack_push(&stack, i);
-    }
-    cstl_stack_print(stack);
-    printf("%d\n", cstl_stack_getLength(stack));
-    printf("%d\n", cstl_stack_capacity(stack));
-
-    printf("\n");
-    for (int i = 0; i < 8; i++) {
-        printf("%d ", cstl_stack_pop(&stack));
-    }
-    return 0;
-}
+//int main() {
+//    Stack stack = cstl_stack_initStack(5);
+//    printf("%d\n", cstl_stack_getLength(stack));
+//    printf("%d\n", cstl_stack_capacity(stack));
+//    for (int i = 0; i < 5; i++) {
+//        cstl_stack_push(&stack, i);
+//    }
+//    cstl_stack_print(stack);
+//    printf("%d\n", cstl_stack_getLength(stack));
+//    printf("%d\n", cstl_stack_capacity(stack));
+//
+//    printf("\n");
+//    for (int i = 0; i < 8; i++) {
+//        printf("%d ", cstl_stack_pop(&stack));
+//    }
+//    return 0;
+//}

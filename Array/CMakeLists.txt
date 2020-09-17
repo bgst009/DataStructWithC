@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 3.17)
+cmake_minimum_required(VERSION 3.1)
 set(CMAKE_C_STANDARD 11)
-set(SRC_DIR DynamicArray/Array.c DynamicArray/DynamicQueue.c DynamicArray/CircularQueue.c DynamicArray/CircularQueue.h)
+set(SRC_DIR DynamicArray/Array.c DynamicArray/DynamicStack.h DynamicArray/DynamicStack.c)
 project(Array)
 add_executable(Array ${SRC_DIR})

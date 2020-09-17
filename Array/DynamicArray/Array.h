@@ -9,7 +9,13 @@
 
 typedef struct MyArray Array;
 typedef int ArrayElementType;
-
+struct Array {
+    ArrayElementType* data;
+    //数组容量
+    int capacity;
+    //元素个数
+    int length;
+};
 
 /**
  * 初始化固定大小的数组

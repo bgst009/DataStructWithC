@@ -4,10 +4,14 @@
 
 #ifndef DATASTRUCTWITHC_BST_H
 #define DATASTRUCTWITHC_BST_H
-#define true 1
-#define false 0
 
-typedef int bool;
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+
 /**
  * 二分搜索树的元素类型
  */
@@ -109,11 +113,21 @@ static bool cstl_tree_containsElement(BSTP bst, BSTNodeP node, TreeElementType e
 void cstl_tree_preOrder(BSTP bst);
 static void cstl_tree_preOrderTraversal(BSTP bst, BSTNodeP node);
 /**
+ * 前序遍历二分搜索树（非递归）
+ * @param bst
+ */
+void cstl_tree_preOrder_noRec(BSTP bst);
+/**
  * 中序遍历二分搜索树（递归）
  * @param bst 二分搜索树
  */
 void cstl_tree_inOrder(BSTP bst);
 static void cstl_tree_inOrderTraversal(BSTP bst, BSTNodeP node);
+/**
+ * 中序遍历二分搜索树（非递归）
+ * @param bst 二分搜索树
+ */
+void cstl_tree_inOrder_noRec(BSTP bst);
 /**
  * 后续遍历二分搜索树（递归）
  * @param bst 二分搜索树
