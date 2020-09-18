@@ -135,4 +135,6 @@ void cstl_tree_inOrder_noRec(BSTP bst);
 void cstl_tree_postOrder(BSTP bst);
 static void cstl_tree_postOrderTraversal(BSTP bst, BSTNodeP node);
 
+void cstl_tree_levelOrder(BSTP bst);
+
 #endif//DATASTRUCTWITHC_BST_H
